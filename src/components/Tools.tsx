@@ -23,7 +23,7 @@ const featureSkills = [
 
 const Tools = () => {
     return (
-        <section id="tools" className="py-24 md:py-32 bg-[var(--background)] overflow-hidden relative">
+        <section id="tools" className="py-24 md:py-20 bg-[var(--background)] overflow-hidden relative">
             {/* Ambient Background Glows */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-violet-600/10 blur-[150px] rounded-full pointer-events-none" />
             <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-fuchsia-600/10 blur-[150px] rounded-full pointer-events-none" />

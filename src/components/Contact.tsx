@@ -13,7 +13,7 @@ import {
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-24 md:py-32 bg-[var(--background)] overflow-hidden relative">
+    <section id="contact" className="py-24 md:py-20 bg-[var(--background)] overflow-hidden relative">
       {/* Ambient Animated Background Elements */}
       <div className="absolute top-0 right-[-10%] w-[500px] h-[500px] bg-violet-500/10 blur-[120px] rounded-full animate-blob hidden dark:block" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-fuchsia-500/10 blur-[120px] rounded-full animate-blob animation-delay-2000 hidden dark:block" />
@@ -70,7 +70,7 @@ const Contact = () => {
                     {
                       icon: <FaPhone />,
                       title: "Phone",
-                      val: "+92 334 4248673",
+                      val: "+92 347 7734372",
                       gradient: "from-fuchsia-500 to-pink-500"
                     },
                     {

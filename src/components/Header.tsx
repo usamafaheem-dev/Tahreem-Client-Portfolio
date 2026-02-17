@@ -30,7 +30,7 @@ export default function Navbar() {
 
   return (
     <header className={`fixed w-full z-50 transition-all duration-500 px-4 sm:px-0 ${isScrolled
-      ? "top-2"
+      ? "top-2 sm:top-0"
       : "top-0"
       }`}>
       <div className={`container mx-auto transition-all duration-500 flex justify-between items-center px-6 sm:px-12 lg:px-20 ${isScrolled

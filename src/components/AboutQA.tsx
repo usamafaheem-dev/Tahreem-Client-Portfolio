@@ -18,7 +18,7 @@ const AboutQA = () => {
         <section
             id="about"
             ref={sectionRef}
-            className="py-24 md:py-32 bg-[var(--background)] overflow-hidden relative"
+            className="py-24 md:py-20 bg-[var(--background)] overflow-hidden relative"
         >
             {/* Ambient Background Elements */}
             <div className="absolute top-20 left-10 w-[500px] h-[500px] bg-violet-600/10 blur-[120px] rounded-full pointer-events-none" />

@@ -4,7 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { SiSelenium, SiCypress, SiPostman, SiAppium, SiJavascript, SiPython } from 'react-icons/si';
 import { FaChevronRight, FaRocket, FaShield, FaMicroscope, FaGithub, FaBug } from 'react-icons/fa6';
-import InteractiveParticles from './InteractiveParticles';
+
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -114,7 +114,7 @@ const Hero = () => {
         />
 
         {/* Dynamic Interactive Particles (Antigravity Effect) */}
-        <InteractiveParticles />
+
       </div>
 
       <div className="container mx-auto relative z-10 px-6 sm:px-12 lg:px-20">

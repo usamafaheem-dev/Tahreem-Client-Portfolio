@@ -33,7 +33,7 @@ const testimonials = [
 
 const Testimonials = () => {
     return (
-        <section id="testimonials" className="py-24 md:py-32 bg-[var(--background)] relative overflow-hidden">
+        <section id="testimonials" className="py-24 md:py-20 bg-[var(--background)] relative overflow-hidden">
             {/* Ambient Background Glows */}
             <motion.div
                 animate={{

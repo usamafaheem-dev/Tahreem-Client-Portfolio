@@ -33,7 +33,7 @@ const ExperienceQA = () => {
     ];
 
     return (
-        <section id="experience" className="py-24 md:py-32 bg-[var(--background)] overflow-hidden relative">
+        <section id="experience" className="py-24 md:py-20 bg-[var(--background)] overflow-hidden relative">
             {/* Ultra-Premium Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
                 <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-violet-600/10 blur-[130px] rounded-full animate-blob hidden dark:block" />

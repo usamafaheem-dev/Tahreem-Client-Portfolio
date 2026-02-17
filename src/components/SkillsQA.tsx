@@ -37,7 +37,7 @@ const skills = [
 
 const SkillsQA = () => {
     return (
-        <section id="skills" className="py-24 md:py-32 bg-[var(--background)] overflow-hidden relative">
+        <section id="skills" className="py-24 md:py-20 bg-[var(--background)] overflow-hidden relative">
             {/* Ambient Lighting */}
             <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-violet-600/10 blur-[120px] rounded-full pointer-events-none"></div>
             <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-fuchsia-600/10 blur-[120px] rounded-full pointer-events-none"></div>

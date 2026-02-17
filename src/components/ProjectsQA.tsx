@@ -92,7 +92,7 @@ const ProjectsQA = () => {
         });
 
     return (
-        <section id="projects" className="py-24 md:py-32 bg-[var(--background)] relative overflow-hidden">
+        <section id="projects" className="py-24 md:py-20 bg-[var(--background)] relative overflow-hidden">
             {/* Dynamic Background Blobs for Depth */}
             <motion.div
                 animate={{
