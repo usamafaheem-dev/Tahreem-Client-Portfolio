@@ -1,7 +1,6 @@
 "use client";
-import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { FaSearch, FaUserCheck, FaLightbulb, FaLinkedinIn, FaGithub, FaEnvelope } from 'react-icons/fa';
 
 const AboutQA = () => {
     return (
@@ -13,21 +12,32 @@ const AboutQA = () => {
                         <motion.div
                             initial={{ opacity: 0, x: -50 }}
                             whileInView={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8 }}
+                            animate={{ y: [0, -15, 0] }}
+                            transition={{
+                                opacity: { duration: 0.8 },
+                                x: { duration: 0.8 },
+                                y: { duration: 6, repeat: Infinity, ease: "easeInOut" }
+                            }}
                             viewport={{ once: true }}
-                            className="relative aspect-[4/5] rounded-[60px] overflow-hidden border border-slate-100 dark:border-white/5 shadow-2xl"
+                            className="relative aspect-[4/5] max-w-[400px] mx-auto rounded-[60px] overflow-hidden border border-slate-100 dark:border-white/5 shadow-2xl group"
                         >
-                            <img
-                                src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=687&auto=format&fit=crop"
-                                alt="About Tahreem"
-                                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
-                            />
+                            <div className="w-full h-full bg-gradient-to-br from-violet-600/5 to-fuchsia-600/5 flex items-center justify-center p-16">
+                                <img
+                                    src="/images/about-sqa.png"
+                                    alt="About Tahreem"
+                                    className="w-full h-full object-contain filter drop-shadow-xl"
+                                />
+                            </div>
 
                             {/* Large Experience Badge */}
-                            <div className="absolute top-10 right-10 p-10 rounded-[40px] bg-violet-600 text-white shadow-2xl z-20 animate-float">
-                                <p className="text-6xl font-black font-outfit mb-2">01+</p>
-                                <p className="text-[10px] font-black uppercase tracking-widest text-white/80 leading-none">Years Of<br />Experience</p>
-                            </div>
+                            <motion.div
+                                animate={{ y: [0, 10, 0] }}
+                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                                className="absolute top-8 right-8 p-8 rounded-[35px] bg-violet-600 text-white shadow-2xl z-20"
+                            >
+                                <p className="text-5xl font-black font-outfit mb-1">01+</p>
+                                <p className="text-[9px] font-black uppercase tracking-widest text-white/80 leading-none">Years Of<br />Experience</p>
+                            </motion.div>
 
                             {/* Decorative Elements */}
                             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-fuchsia-600/20 rounded-full blur-3xl"></div>
@@ -45,12 +55,12 @@ const AboutQA = () => {
                         <div>
                             <p className="text-violet-600 font-black uppercase tracking-widest text-[10px] mb-6">About Me</p>
                             <h2 className="text-4xl md:text-6xl font-black font-outfit text-slate-900 dark:text-white leading-[1] mb-8">
-                                "Crafting Enjoyable <br />
+                                &quot;Crafting Enjoyable <br />
                                 <span className="text-violet-600">Digital Solutions</span> <br />
-                                From Business Ideas."
+                                From Business Ideas.&quot;
                             </h2>
                             <p className="text-lg text-slate-500 dark:text-slate-400 leading-relaxed font-medium">
-                                I specialize in Manual & Automation Quality Assurance, ensuring that your digital products are not only bug-free but also provide a seamless and enjoyable user experience.
+                                I specialize in Manual &amp; Automation Quality Assurance, ensuring that your digital products are not only bug-free but also provide a seamless and enjoyable user experience.
                             </p>
                         </div>
 

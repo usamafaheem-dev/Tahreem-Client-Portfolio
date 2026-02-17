@@ -54,7 +54,7 @@ const Contact = () => {
               <div className="mt-12 pt-12 border-t border-slate-100 dark:border-white/5">
                 <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-8">Social Connect</p>
                 <div className="flex gap-4">
-                  {[<FaLinkedin />, <FaGithub />].map((icon, i) => (
+                  {[<FaLinkedin key="linkedin" />, <FaGithub key="github" />].map((icon, i) => (
                     <a key={i} href="#" className="w-14 h-14 rounded-[20px] bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center hover:bg-violet-600 dark:hover:bg-violet-600 dark:hover:text-white transition-all hover:-translate-y-2 shadow-xl">
                       {icon}
                     </a>

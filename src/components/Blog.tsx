@@ -51,11 +51,17 @@ const Blog = () => {
                             viewport={{ once: true }}
                             className="group cursor-pointer"
                         >
-                            <div className="relative aspect-[16/10] rounded-[40px] overflow-hidden mb-8 shadow-2xl shadow-slate-200/50 dark:shadow-none">
-                                <img src={post.image} alt={post.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                                <div className="absolute top-6 left-6 px-5 py-2 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-slate-900">
-                                    {post.date}
-                                </div>
+                            <div className="relative p-4 pb-0">
+                                <motion.div
+                                    animate={{ y: [0, -8, 0] }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
+                                    className="relative aspect-[16/10] rounded-[35px] overflow-hidden mb-8 shadow-xl shadow-slate-200/50 dark:shadow-none bg-slate-100 dark:bg-white/5"
+                                >
+                                    <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" />
+                                    <div className="absolute top-4 left-4 px-4 py-1.5 bg-white/80 backdrop-blur-md rounded-full text-[9px] font-black uppercase tracking-widest text-slate-900 border border-white/20">
+                                        {post.date}
+                                    </div>
+                                </motion.div>
                             </div>
                             <h3 className="text-2xl font-black font-outfit text-slate-900 dark:text-white mb-4 group-hover:text-violet-600 transition-colors">
                                 {post.title}

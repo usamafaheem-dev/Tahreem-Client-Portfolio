@@ -102,8 +102,8 @@ const ProjectsQA = () => {
                                 key={filter}
                                 onClick={() => setActiveFilter(filter)}
                                 className={`px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${activeFilter === filter
-                                        ? "bg-violet-600 text-white shadow-xl shadow-violet-500/20"
-                                        : "bg-white dark:bg-white/5 text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-white/5 hover:border-violet-500/50"
+                                    ? "bg-violet-600 text-white shadow-xl shadow-violet-500/20"
+                                    : "bg-white dark:bg-white/5 text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-white/5 hover:border-violet-500/50"
                                     }`}
                             >
                                 {filter}
@@ -123,24 +123,30 @@ const ProjectsQA = () => {
                             viewport={{ once: true }}
                             className="group relative bg-white dark:bg-white/5 rounded-[40px] border border-slate-100 dark:border-white/5 overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
                         >
-                            {/* Project Image Placeholder */}
-                            <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
-                                <div className="absolute inset-0 bg-gradient-to-br from-violet-600/40 to-fuchsia-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
-                                    <a href={project.link} target="_blank" className="p-5 rounded-full bg-white text-violet-600 shadow-2xl scale-0 group-hover:scale-100 transition-transform duration-500">
-                                        <FaExternalLinkAlt size={24} />
-                                    </a>
-                                </div>
-                                <img
-                                    src={`https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop&u=${index}`}
-                                    alt={project.title}
-                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                                />
+                            {/* Project Image Container with Padding */}
+                            <div className="relative p-6 pb-0 group">
+                                <motion.div
+                                    animate={{ y: [0, -10, 0] }}
+                                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                                    className="relative aspect-[16/10] overflow-hidden rounded-[30px] bg-slate-100 dark:bg-slate-800 shadow-lg"
+                                >
+                                    <div className="absolute inset-0 bg-gradient-to-br from-violet-600/40 to-fuchsia-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
+                                        <a href={project.link} target="_blank" className="p-5 rounded-full bg-white text-violet-600 shadow-2xl scale-0 group-hover:scale-100 transition-transform duration-500">
+                                            <FaExternalLinkAlt size={20} />
+                                        </a>
+                                    </div>
+                                    <img
+                                        src={`https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop&u=${index}`}
+                                        alt={project.title}
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                    />
 
-                                <div className="absolute top-6 left-6 z-20">
-                                    <span className="px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-[10px] font-black uppercase tracking-widest text-white">
-                                        {project.type}
-                                    </span>
-                                </div>
+                                    <div className="absolute top-4 left-4 z-20">
+                                        <span className="px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-[9px] font-black uppercase tracking-widest text-white">
+                                            {project.type}
+                                        </span>
+                                    </div>
+                                </motion.div>
                             </div>
 
                             <div className="p-10">

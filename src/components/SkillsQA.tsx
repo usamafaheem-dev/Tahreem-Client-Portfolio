@@ -47,8 +47,11 @@ const SkillsQA = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-center mb-20"
+                    className="text-center mb-20 relative"
                 >
+                    <div className="absolute -top-20 right-0 hidden lg:block w-40 h-40 opacity-20">
+                        <img src="https://illustrations.popsy.co/purple/data-analysis.svg" alt="Analysis" className="w-full h-full object-contain animate-float" />
+                    </div>
                     <h2 className="text-4xl md:text-5xl font-outfit font-black text-slate-900 dark:text-white mb-6">
                         My <span className="text-violet-600">Expert</span> Areas
                     </h2>
@@ -66,8 +69,8 @@ const SkillsQA = () => {
                             transition={{ duration: 0.6, delay: index * 0.1 }}
                             viewport={{ once: true }}
                             className={`group p-10 rounded-[40px] border transition-all duration-500 ${skill.active
-                                    ? "bg-violet-600 border-violet-500 shadow-2xl shadow-violet-500/30 text-white"
-                                    : "bg-white dark:bg-white/5 border-slate-100 dark:border-white/5 hover:border-violet-500/50 hover:shadow-xl dark:hover:bg-white/10"
+                                ? "bg-violet-600 border-violet-500 shadow-2xl shadow-violet-500/30 text-white"
+                                : "bg-white dark:bg-white/5 border-slate-100 dark:border-white/5 hover:border-violet-500/50 hover:shadow-xl dark:hover:bg-white/10"
                                 }`}
                         >
                             <div className={`w-16 h-16 rounded-3xl flex items-center justify-center text-3xl mb-10 transition-transform duration-500 group-hover:scale-110 ${skill.active ? "bg-white text-violet-600" : "bg-violet-100 dark:bg-violet-900/40 text-violet-600"

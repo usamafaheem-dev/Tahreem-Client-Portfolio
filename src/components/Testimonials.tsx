@@ -72,7 +72,11 @@ const Testimonials = () => {
                             </p>
 
                             <div className="flex items-center gap-4">
-                                <img src={t.image} alt={t.name} className="w-14 h-14 rounded-full object-cover" />
+                                <motion.img
+                                    animate={{ y: [0, -5, 0] }}
+                                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.3 }}
+                                    src={t.image} alt={t.name} className="w-14 h-14 rounded-full object-cover border-2 border-violet-100 dark:border-white/10"
+                                />
                                 <div>
                                     <h4 className="font-black text-slate-900 dark:text-white uppercase tracking-wider text-xs">{t.name}</h4>
                                     <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.role}</p>
