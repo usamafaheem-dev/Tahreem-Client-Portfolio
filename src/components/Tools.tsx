@@ -3,65 +3,81 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-    SiSelenium, SiCypress, SiAppium, SiJunit5,
-    SiPostman, SiApachejmeter, SiJira, SiTrello, SiGithub,
-    SiGitlab, SiJenkins, SiDocker, SiMysql, SiPython
+    SiSelenium, SiCypress, SiAppium, SiPostman, SiJira, SiTrello, SiGithub,
+    SiGit, SiVisualstudiocode, SiAndroidstudio, SiXcode, SiMicrosoftsqlserver, SiClickup
 } from 'react-icons/si';
-import { FaJava, FaCogs } from 'react-icons/fa';
 
-const tools = [
-    { name: "Selenium", icon: <SiSelenium className="text-[#43B02A]" /> },
-    { name: "Cypress", icon: <SiCypress className="text-[#17202C]" /> },
-    { name: "Appium", icon: <SiAppium className="text-[#662D8C]" /> },
-    { name: "JUnit", icon: <SiJunit5 className="text-[#25A162]" /> },
-    { name: "TestNG", icon: <FaCogs className="text-[#FF7F00]" /> },
-    { name: "Postman", icon: <SiPostman className="text-[#FF6C37]" /> },
-    { name: "JMeter", icon: <SiApachejmeter className="text-[#D22128]" /> },
-    { name: "Jira", icon: <SiJira className="text-[#0052CC]" /> },
-    { name: "Trello", icon: <SiTrello className="text-[#0079BF]" /> },
-    { name: "GitHub", icon: <SiGithub className="text-[#181717]" /> },
-    { name: "GitLab", icon: <SiGitlab className="text-[#FC6D26]" /> },
-    { name: "Jenkins", icon: <SiJenkins className="text-[#D24939]" /> },
-    { name: "Docker", icon: <SiDocker className="text-[#2496ED]" /> },
-    { name: "MySQL", icon: <SiMysql className="text-[#4479A1]" /> },
-    { name: "Python", icon: <SiPython className="text-[#3776AB]" /> },
-    { name: "Java", icon: <FaJava className="text-[#007396]" /> },
+const skills = [
+    { name: "Manual Testing", level: 95 },
+    { name: "Automation (Cypress/Selenium)", level: 85 },
+    { name: "API Testing (Postman)", level: 90 },
+    { name: "Mobile Testing (Appium)", level: 80 },
+];
+
+const featureSkills = [
+    { name: "UI/UX Quality", icon: <SiSelenium />, desc: "Ensuring visual perfection." },
+    { name: "API Integrity", icon: <SiPostman />, desc: "Robust backend validation." },
+    { name: "Performance", icon: <SiAppium />, desc: "Load & Stress testing." },
+    { name: "Security", icon: <SiJira />, desc: "Vulnerability assessment." }
 ];
 
 const Tools = () => {
     return (
-        <section id="tools" className="py-20 bg-white">
+        <section id="skills" className="py-32 bg-[var(--background)] overflow-hidden">
             <div className="container mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <span className="text-blue-600 font-semibold tracking-wider uppercase text-sm">Tech Stack</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Tools & Technologies</h2>
-                    <div className="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
-                </motion.div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    {/* Left: Progress Bars */}
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                    >
+                        <p className="text-violet-600 font-black uppercase tracking-widest text-[10px] mb-6">Expertise Level</p>
+                        <h2 className="text-4xl md:text-6xl font-black font-outfit text-slate-900 dark:text-white leading-[1.1] mb-12">
+                            What My Quality <br />
+                            <span className="text-violet-600">Skills Include</span>
+                        </h2>
 
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
-                    {tools.map((tool, index) => (
-                        <motion.div
-                            key={index}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.4, delay: index * 0.05 }}
-                            viewport={{ once: true }}
-                            className="flex flex-col items-center justify-center p-6 rounded-xl bg-slate-50 border border-slate-100 hover:border-blue-200 hover:shadow-lg transition-all group"
-                        >
-                            <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
-                                {tool.icon}
-                            </div>
-                            <span className="text-sm font-medium text-slate-600 group-hover:text-blue-600 transition-colors">
-                                {tool.name}
-                            </span>
-                        </motion.div>
-                    ))}
+                        <div className="space-y-10">
+                            {skills.map((skill, i) => (
+                                <div key={i} className="space-y-4">
+                                    <div className="flex justify-between items-end">
+                                        <span className="font-black text-slate-700 dark:text-white uppercase text-[10px] tracking-[0.2em]">{skill.name}</span>
+                                        <span className="font-black text-violet-600 text-xs">{skill.level}%</span>
+                                    </div>
+                                    <div className="h-2 w-full bg-slate-100 dark:bg-white/5 rounded-full overflow-hidden">
+                                        <motion.div
+                                            initial={{ width: 0 }}
+                                            whileInView={{ width: `${skill.level}%` }}
+                                            transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
+                                            className="h-full bg-gradient-to-r from-violet-600 to-fuchsia-500 rounded-full"
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </motion.div>
+
+                    {/* Right: Grid of Cards */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        {featureSkills.map((feature, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 30 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.5, delay: i * 0.1 }}
+                                viewport={{ once: true }}
+                                className="bg-white dark:bg-white/5 p-10 rounded-[40px] shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-white/5 flex flex-col items-center text-center group hover:border-violet-600/50 transition-all cursor-default"
+                            >
+                                <div className="w-20 h-20 rounded-3xl bg-violet-50 dark:bg-violet-900/20 flex items-center justify-center text-4xl text-violet-600 mb-8 group-hover:scale-110 group-hover:bg-violet-600 group-hover:text-white transition-all duration-500">
+                                    {feature.icon}
+                                </div>
+                                <h4 className="font-black text-slate-900 dark:text-white uppercase tracking-wider text-xs mb-4">{feature.name}</h4>
+                                <p className="text-[11px] text-slate-400 font-medium leading-relaxed uppercase tracking-widest">{feature.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

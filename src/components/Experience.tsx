@@ -6,74 +6,97 @@ import { FaBriefcase, FaGraduationCap } from 'react-icons/fa';
 
 const Experience = () => {
     return (
-        <section id="experience" className="py-20 bg-slate-50">
+        <section id="experience" className="py-32 bg-[var(--background)] overflow-hidden">
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-24"
                 >
-                    <span className="text-blue-600 font-semibold tracking-wider uppercase text-sm">Journey</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Experience & Education</h2>
-                    <div className="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+                    <p className="text-violet-600 font-black uppercase tracking-widest text-[10px] mb-6">The Journey</p>
+                    <h2 className="text-4xl md:text-6xl font-black font-outfit text-slate-900 dark:text-white leading-[1.1] mb-4">
+                        Experience & <span className="text-violet-600">Education</span>
+                    </h2>
                 </motion.div>
 
-                <div className="max-w-4xl mx-auto space-y-12">
-                    {/* Experience Item */}
+                <div className="max-w-5xl mx-auto space-y-16 relative">
+                    {/* Central Line */}
+                    <div className="absolute top-0 bottom-0 left-[-2px] md:left-1/2 w-px bg-slate-200 dark:bg-white/10 md:transform md:-translate-x-1/2 z-0"></div>
+
+                    {/* Current Experience Item */}
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         viewport={{ once: true }}
-                        className="relative pl-8 md:pl-0"
+                        className="relative pl-10 md:pl-0"
                     >
-                        <div className="md:w-1/2 md:ml-auto md:pl-12 relative">
-                            {/* Timeline Line */}
-                            <div className="absolute left-[-8px] md:left-[-9px] top-2 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow-md z-10"></div>
-                            <div className="absolute left-0 md:left-[-1px] top-6 h-full w-0.5 bg-slate-200 md:hidden"></div>
+                        <div className="md:w-1/2 md:ml-auto md:pl-16 relative">
+                            {/* Marker */}
+                            <div className="absolute left-[-15px] md:left-[-11px] top-10 w-6 h-6 rounded-full bg-violet-600 border-[6px] border-white dark:border-[#0a0118] shadow-2xl z-10"></div>
 
-                            <div className="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition-shadow relative">
-                                <span className="absolute top-6 right-6 text-xs font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">2023 - Present</span>
-                                <h3 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-                                    <FaBriefcase className="text-blue-500" /> SQA Engineer
+                            <div className="bg-white dark:bg-white/5 p-12 rounded-[50px] border border-slate-100 dark:border-white/5 hover:border-violet-500/50 transition-all group shadow-2xl shadow-slate-200/50 dark:shadow-none">
+                                <span className="inline-block mb-6 text-[10px] font-black text-violet-600 bg-violet-50 dark:bg-violet-900/40 px-5 py-2 rounded-full uppercase tracking-widest">May 2025 - Present</span>
+                                <h3 className="text-3xl font-black font-outfit text-slate-900 dark:text-white flex items-center gap-4 mb-4">
+                                    <FaBriefcase className="text-violet-600 flex-shrink-0 text-2xl" /> Manual SQA
                                 </h3>
-                                <p className="text-slate-600 font-medium mb-2">Tech Solutions Inc. (Placeholder)</p>
-                                <p className="text-slate-500 text-sm leading-relaxed">
-                                    Leading the QA team in manual and automation testing. Implemented CI/CD pipelines with Jenkins and reduced bug leakage by 40% through rigorous regression suites.
+                                <p className="text-slate-400 font-bold mb-6 uppercase tracking-widest text-[10px]">vertexAi</p>
+                                <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                                    Specializing in manual software quality assurance, ensuring product excellence through meticulous test execution, bug reporting, and regression testing.
                                 </p>
                             </div>
                         </div>
                     </motion.div>
 
-                    {/* Education Item (Left Aligned on Desktop) */}
+                    {/* Internship Item */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                        viewport={{ once: true }}
+                        className="relative pl-10 md:pl-0"
+                    >
+                        <div className="md:w-1/2 md:mr-auto md:pr-16 md:text-right relative">
+                            <div className="absolute left-[-15px] md:right-[-11px] md:left-auto top-10 w-6 h-6 rounded-full bg-slate-300 dark:bg-white/20 border-[6px] border-white dark:border-[#0a0118] shadow-2xl z-10"></div>
+
+                            <div className="bg-white dark:bg-white/5 p-12 rounded-[50px] border border-slate-100 dark:border-white/5 hover:border-violet-500/50 transition-all group shadow-2xl shadow-slate-200/50 dark:shadow-none">
+                                <span className="inline-block mb-6 text-[10px] font-black text-slate-400 bg-slate-100 dark:bg-white/5 px-5 py-2 rounded-full uppercase tracking-widest">Feb 2025 - Apr 2025</span>
+                                <h3 className="text-3xl font-black font-outfit text-slate-900 dark:text-white flex items-center md:flex-row-reverse gap-4 md:justify-start mb-4">
+                                    <FaBriefcase className="text-slate-400 flex-shrink-0 text-2xl" /> QA Intern
+                                </h3>
+                                <p className="text-slate-400 font-bold mb-6 uppercase tracking-widest text-[10px]">vertexAi</p>
+                                <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                                    Gained hands-on experience in software testing life cycle (STLC), assisting in test case development, and performing initial rounds of testing.
+                                </p>
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Education Item */}
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="relative pl-8 md:pl-0"
+                        className="relative pl-10 md:pl-0"
                     >
-                        <div className="md:w-1/2 md:mr-auto md:pr-12 md:text-right relative">
-                            {/* Timeline Line */}
-                            <div className="absolute left-[-8px] md:right-[-9px] md:left-auto top-2 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow-md z-10"></div>
+                        <div className="md:w-1/2 md:ml-auto md:pl-16 relative">
+                            <div className="absolute left-[-15px] md:left-[-11px] top-10 w-6 h-6 rounded-full bg-fuchsia-600 border-[6px] border-white dark:border-[#0a0118] shadow-2xl z-10"></div>
 
-                            <div className="bg-white p-6 rounded-2xl shadow-md border border-slate-100 hover:shadow-lg transition-shadow relative">
-                                <span className="absolute top-6 right-6 md:left-6 md:right-auto text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">2019 - 2023</span>
-                                <h3 className="text-xl font-bold text-slate-800 flex items-center md:flex-row-reverse gap-2 md:justify-start">
-                                    <FaGraduationCap className="text-emerald-500" /> BS Computer Science
+                            <div className="bg-white dark:bg-white/5 p-12 rounded-[50px] border border-slate-100 dark:border-white/5 hover:border-violet-500/50 transition-all group shadow-2xl shadow-slate-200/50 dark:shadow-none">
+                                <span className="inline-block mb-6 text-[10px] font-black text-fuchsia-600 bg-fuchsia-50 dark:bg-fuchsia-900/40 px-5 py-2 rounded-full uppercase tracking-widest">2021 - 2025</span>
+                                <h3 className="text-3xl font-black font-outfit text-slate-900 dark:text-white flex items-center gap-4 mb-4">
+                                    <FaGraduationCap className="text-fuchsia-600 flex-shrink-0 text-2xl" /> BS Software Engineering
                                 </h3>
-                                <p className="text-slate-600 font-medium mb-2">University of Technology (Placeholder)</p>
-                                <p className="text-slate-500 text-sm leading-relaxed">
-                                    Specialized in Software Engineering and Quality Assurance. Capstone project focused on Automated Testing Frameworks.
+                                <p className="text-slate-400 font-bold mb-6 uppercase tracking-widest text-[10px]">GC University Faisalabad</p>
+                                <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
+                                    Focused on software development principles, quality assurance methodologies, and software human lifecycle management.
                                 </p>
                             </div>
                         </div>
                     </motion.div>
-
-                    {/* Central Line for Desktop */}
-                    <div className="absolute top-0 bottom-0 left-1/2 w-0.5 bg-slate-200 hidden md:block transform -translate-x-1/2 z-0"></div>
                 </div>
             </div>
         </section>

@@ -8,75 +8,89 @@ const skills = [
     {
         category: "Manual Testing",
         icon: <FaBug />,
-        items: ["Functional Testing", "UI/UX Testing", "Regression Testing", "Smoke/Sanity Testing", "Cross-Browser Testing"],
-        color: "text-red-500",
-        bg: "bg-red-50",
-        border: "border-red-100"
+        desc: "Ensure flawless application logic through detailed exploratory and regression testing.",
+        items: ["Functional", "UI/UX", "Regression"],
+        active: false
     },
     {
-        category: "Automation Testing",
+        category: "Automation SQA",
         icon: <FaLaptopCode />,
-        items: ["Selenium WebDriver", "Cypress", "Appium (Mobile)", "TestNG", "JUnit"],
-        color: "text-blue-500",
-        bg: "bg-blue-50",
-        border: "border-blue-100"
+        desc: "Robust Selenium & Cypress suites for continuous testing and rapid deployment.",
+        items: ["Selenium", "Cypress", "Appium"],
+        active: true
     },
     {
         category: "API Testing",
         icon: <FaServer />,
-        items: ["Postman", "Rest Assured", "Swagger", "JSON Validation"],
-        color: "text-purple-500",
-        bg: "bg-purple-50",
-        border: "border-purple-100"
+        desc: "Expert validation of backend services using Postman and Rest Assured protocols.",
+        items: ["Postman", "REST", "SOAP"],
+        active: false
     },
     {
-        category: "Tools & Management",
+        category: "Quality Control",
         icon: <FaTools />,
-        items: ["Jira", "Trello", "Git/GitHub", "TestRail", "Agile/Scrum"],
-        color: "text-emerald-500",
-        bg: "bg-emerald-50",
-        border: "border-emerald-100"
+        desc: "Meticulous quality control processes ensuring 100% project satisfaction.",
+        items: ["Jira", "Jenkins", "Git"],
+        active: false
     }
 ];
 
 const SkillsQA = () => {
     return (
-        <section id="skills" className="py-20 bg-slate-50">
-            <div className="container mx-auto px-6">
+        <section id="skills" className="py-32 bg-[var(--background)] overflow-hidden relative">
+            {/* Background Light */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-violet-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+            <div className="container mx-auto px-6 relative z-10">
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.8 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    className="text-center mb-20"
                 >
-                    <span className="text-blue-600 font-semibold tracking-wider uppercase text-sm">Expertise</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Technical Skills</h2>
-                    <div className="w-20 h-1 bg-emerald-500 mx-auto rounded-full"></div>
+                    <h2 className="text-4xl md:text-5xl font-outfit font-black text-slate-900 dark:text-white mb-6">
+                        My <span className="text-violet-600">Expert</span> Areas
+                    </h2>
+                    <p className="text-slate-500 dark:text-slate-400 max-w-2xl mx-auto font-medium">
+                        Focusing on cutting-edge SQA methodologies to deliver high-quality digital products through meticulous testing and automation.
+                    </p>
                 </motion.div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {skills.map((skill, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
+                            initial={{ opacity: 0, y: 40 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
                             viewport={{ once: true }}
-                            className={`p-6 rounded-2xl bg-white shadow-lg shadow-slate-200/50 hover:shadow-xl hover:-translate-y-1 transition-all border ${skill.border}`}
+                            className={`group p-10 rounded-[40px] border transition-all duration-500 ${skill.active
+                                    ? "bg-violet-600 border-violet-500 shadow-2xl shadow-violet-500/30 text-white"
+                                    : "bg-white dark:bg-white/5 border-slate-100 dark:border-white/5 hover:border-violet-500/50 hover:shadow-xl dark:hover:bg-white/10"
+                                }`}
                         >
-                            <div className={`w-14 h-14 rounded-xl flex items-center justify-center text-2xl mb-6 ${skill.bg} ${skill.color}`}>
+                            <div className={`w-16 h-16 rounded-3xl flex items-center justify-center text-3xl mb-10 transition-transform duration-500 group-hover:scale-110 ${skill.active ? "bg-white text-violet-600" : "bg-violet-100 dark:bg-violet-900/40 text-violet-600"
+                                }`}>
                                 {skill.icon}
                             </div>
-                            <h3 className="text-xl font-bold text-slate-800 mb-4">{skill.category}</h3>
-                            <ul className="space-y-2">
-                                {skill.items.map((item, idx) => (
-                                    <li key={idx} className="flex items-center gap-2 text-slate-600 text-sm">
-                                        <span className={`w-1.5 h-1.5 rounded-full ${skill.color.replace('text-', 'bg-')}`}></span>
+
+                            <h3 className={`text-2xl font-black font-outfit mb-4 ${skill.active ? "text-white" : "text-slate-900 dark:text-white"}`}>
+                                {skill.category}
+                            </h3>
+
+                            <p className={`text-sm leading-relaxed mb-8 ${skill.active ? "text-white/80" : "text-slate-500 dark:text-slate-400 text-balance"}`}>
+                                {skill.desc}
+                            </p>
+
+                            <div className="flex flex-wrap gap-2">
+                                {skill.items.map((item, i) => (
+                                    <span key={i} className={`px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-widest ${skill.active ? "bg-white/20 text-white" : "bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-slate-400"
+                                        }`}>
                                         {item}
-                                    </li>
+                                    </span>
                                 ))}
-                            </ul>
+                            </div>
                         </motion.div>
                     ))}
                 </div>

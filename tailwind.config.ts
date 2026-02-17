@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
+  darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -9,26 +10,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "#2563eb", // Soft blue
-        secondary: "#10b981", // QA Green (Emerald-500)
-        dark: "#1e293b", // Slate-800
-        light: "#f8fafc", // Slate-50
-      },
-      fontFamily: {
-        sans: ["Inter", "sans-serif"],
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        surface: "var(--surface)",
+        muted: "var(--muted)",
+        accent: "var(--accent)",
+        border: "var(--border)",
+        primary: {
+          light: "#8b5cf6",
+          dark: "#a78bfa",
+        },
+        secondary: {
+          light: "#d946ef",
+          dark: "#f472b6",
+        },
       },
       animation: {
-        'float-slow': 'float 6s ease-in-out infinite',
-        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+        'blob': "blob 7s infinite",
+        'float': "float 6s ease-in-out infinite",
       },
       keyframes: {
+        blob: {
+          "0%": { transform: "translate(0px, 0px) scale(1)" },
+          "33%": { transform: "translate(30px, -50px) scale(1.1)" },
+          "66%": { transform: "translate(-20px, 20px) scale(0.9)" },
+          "100%": { transform: "translate(0px, 0px) scale(1)" },
+        },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-20px)' },
-        },
-        fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
         },
       },
     },

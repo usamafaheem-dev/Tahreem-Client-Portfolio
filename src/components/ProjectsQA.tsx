@@ -74,8 +74,15 @@ const projects = [
 ];
 
 const ProjectsQA = () => {
+    const [activeFilter, setActiveFilter] = React.useState("All");
+    const filters = ["All", "Manual", "Automation", "API", "Mobile"];
+
+    const filteredProjects = activeFilter === "All"
+        ? projects
+        : projects.filter(p => p.testing.some(t => t.includes(activeFilter)) || p.type.includes(activeFilter));
+
     return (
-        <section id="projects" className="py-20 bg-white">
+        <section id="projects" className="py-32 bg-[var(--background)]">
             <div className="container mx-auto px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -84,67 +91,78 @@ const ProjectsQA = () => {
                     viewport={{ once: true }}
                     className="text-center mb-16"
                 >
-                    <span className="text-blue-600 font-semibold tracking-wider uppercase text-sm">Portfolio</span>
-                    <h2 className="text-3xl md:text-4xl font-bold text-slate-900 mt-2 mb-4">Tested Projects</h2>
-                    <div className="w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-                    <p className="text-slate-500 mt-4 max-w-xl mx-auto">
-                        A showcase of applications where I ensured quality, performance, and reliability.
-                    </p>
+                    <h2 className="text-4xl md:text-6xl font-outfit font-black text-slate-900 dark:text-white mb-6">
+                        Review My <span className="text-violet-600">Latest</span> Projects
+                    </h2>
+
+                    {/* Filter Bar */}
+                    <div className="flex flex-wrap justify-center gap-4 mt-12 overflow-x-auto pb-4">
+                        {filters.map((filter) => (
+                            <button
+                                key={filter}
+                                onClick={() => setActiveFilter(filter)}
+                                className={`px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${activeFilter === filter
+                                        ? "bg-violet-600 text-white shadow-xl shadow-violet-500/20"
+                                        : "bg-white dark:bg-white/5 text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-white/5 hover:border-violet-500/50"
+                                    }`}
+                            >
+                                {filter}
+                            </button>
+                        ))}
+                    </div>
                 </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {projects.map((project, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    {filteredProjects.map((project, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: index * 0.1 }}
+                            layout
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5 }}
                             viewport={{ once: true }}
-                            className="group bg-slate-50 rounded-2xl border border-slate-100 hover:border-blue-200 shadow-md hover:shadow-xl transition-all overflow-hidden flex flex-col h-full"
+                            className="group relative bg-white dark:bg-white/5 rounded-[40px] border border-slate-100 dark:border-white/5 overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
                         >
-                            <div className={`h-2 w-full bg-${project.color}-500`}></div>
-                            <div className="p-6 flex-1 flex flex-col">
-                                <div className="flex justify-between items-start mb-4">
-                                    <div className="p-2 bg-white rounded-lg shadow-sm text-blue-600 text-xl">
-                                        {project.icon}
-                                    </div>
-                                    <span className="text-xs font-semibold px-2 py-1 rounded bg-slate-200 text-slate-600">
+                            {/* Project Image Placeholder */}
+                            <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
+                                <div className="absolute inset-0 bg-gradient-to-br from-violet-600/40 to-fuchsia-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
+                                    <a href={project.link} target="_blank" className="p-5 rounded-full bg-white text-violet-600 shadow-2xl scale-0 group-hover:scale-100 transition-transform duration-500">
+                                        <FaExternalLinkAlt size={24} />
+                                    </a>
+                                </div>
+                                <img
+                                    src={`https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop&u=${index}`}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                />
+
+                                <div className="absolute top-6 left-6 z-20">
+                                    <span className="px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-[10px] font-black uppercase tracking-widest text-white">
                                         {project.type}
                                     </span>
                                 </div>
+                            </div>
 
-                                <h3 className="text-xl font-bold text-slate-800 mb-2 group-hover:text-blue-600 transition-colors">
-                                    {project.title}
-                                </h3>
-                                <p className="text-slate-500 text-sm mb-4 line-clamp-2">
+                            <div className="p-10">
+                                <div className="flex justify-between items-center mb-4">
+                                    <h3 className="text-3xl font-black font-outfit text-slate-900 dark:text-white">
+                                        {project.title}
+                                    </h3>
+                                    <div className="w-10 h-10 rounded-full bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center text-violet-600">
+                                        {project.icon}
+                                    </div>
+                                </div>
+                                <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">
                                     {project.description}
                                 </p>
 
-                                <div className="mt-auto space-y-4">
-                                    <div className="bg-white p-3 rounded-lg border border-slate-100">
-                                        <h4 className="text-xs font-bold text-slate-700 mb-2 flex items-center gap-1">
-                                            <FaBug className="text-red-400" /> Key Bug Found:
-                                        </h4>
-                                        <p className="text-xs text-slate-500 italic">"{project.bugs}"</p>
-                                    </div>
-
-                                    <div className="flex flex-wrap gap-2">
-                                        {project.tools.map((tool, idx) => (
-                                            <span key={idx} className="text-[10px] font-medium px-2 py-1 rounded-full bg-slate-200 text-slate-600">
-                                                {tool}
-                                            </span>
-                                        ))}
-                                    </div>
+                                <div className="flex flex-wrap gap-2">
+                                    {project.tools.map((tool, i) => (
+                                        <span key={i} className="px-4 py-1.5 rounded-full bg-slate-50 dark:bg-white/5 text-[10px] font-black uppercase tracking-widest text-slate-400 border border-slate-100 dark:border-white/5">
+                                            {tool}
+                                        </span>
+                                    ))}
                                 </div>
-
-                                <a
-                                    href={project.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="mt-6 flex items-center justify-center gap-2 w-full py-2 rounded-lg bg-white border border-slate-200 text-slate-700 text-sm font-medium hover:bg-blue-600 hover:text-white hover:border-blue-600 transition-all"
-                                >
-                                    Visit Project <FaExternalLinkAlt className="text-xs" />
-                                </a>
                             </div>
                         </motion.div>
                     ))}

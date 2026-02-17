@@ -16,116 +16,97 @@ import Resume_Website from "../../public/Resume Website.avif";
 
 const projects = [
   {
-    title: "Aesthetic Clinic Website",
-    description: "A modern clinic website with animations, services, appointments, and a 3D hero section built with React and Next.js.",
+    title: "Aesthetic Clinic Platform",
+    description: "QA tested for visual regressions and 150+ edge cases using automated Cypress suites.",
     image: Aesthetic,
     link: "https://aesthetic-clinic-website.vercel.app/",
+    tags: ["Cypress", "Visual Testing", "React"]
   },
   {
-    title: "Dynamic Blog",
-    description: "A blog platform using dynamic routing, Markdown support, and dark mode with Next.js.",
+    title: "Dynamic Content System",
+    description: "Robust API validation and E2E testing for content synchronization and markdown rendering.",
     image: Dynamic_Blog,
     link: "https://dynamic-blog-milestone-03.vercel.app/",
+    tags: ["Postman", "API", "Next.js"]
   },
   {
-    title: "E-Commerce Store",
-    description: "A fully functional e-commerce store with product pages, Stripe checkout, and CMS backend.",
+    title: "E-Commerce Robustness",
+    description: "Ensuring 100% stable checkout flows and payment integration security through rigorous SQA.",
     image: E_Commerce,
     link: "https://hackathon-03-final.vercel.app/",
+    tags: ["Selenium", "Stripe", "Smoke Testing"]
   },
   {
-    title: "Tailwind Portfolio",
-    description: "A responsive portfolio using Tailwind CSS with dark mode and animation-rich UI.",
-    image: Portfolio,
-    link: "https://vercel.com/sadia-khans-projects/tailwind-portfolio-sadia_khan",
-  },
-  {
-    title: "Resume Generator",
-    description: "Create professional resumes dynamically using React forms, templates, and PDF export.",
-    image: Resume_Generator,
-    link: "https://milestone-03-kohl.vercel.app/",
-  },
-  {
-    title: "AI Chatbot App",
-    description: "A smart AI chatbot built with Streamlit and OpenAI API for natural language conversations.",
-    image: Chatbot,
-    link: "https://sadiarajpoot-chatbot-streamlit-frontend-b5mv7j.streamlit.app/",
-  },
-  {
-    title: "Datasweeper App",
-    description: "A data-cleaning tool for removing duplicates, nulls, and errors. Built with Python & Streamlit.",
+    title: "Data Sweeper Pro",
+    description: "Validated data integrity algorithms and complex state management using manual protocols.",
     image: Datasweeper,
     link: "https://datasweeper-app-mindset-challege.streamlit.app/",
-  },
-  {
-    title: "Password Manager",
-    description: "Secure password storage app with passkey encryption, login validation, and session control.",
-    image: Password_manager,
-    link: "https://sadiarajpoot-password-manager-streamlit-app-lt9hix.streamlit.app/",
-  },
-  {
-    title: "Resume Website",
-    description: "An online resume site built with responsive UI, animations, and downloadable PDF support.",
-    image: Resume_Website,
-    link: "https://sadia-khan-resume-website234.vercel.app/",
-  },
+    tags: ["Manual", "Python", "Integrity"]
+  }
 ];
 
 export default function MyProjects() {
   return (
-    <section className="fonts relative py-16 px-6 sm:px-10 md:px-20 lg:px-32 bg-gradient-to-b from-black via-gray-900 to-black text-white">
-      <div className="text-center mb-12">
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
+    <section id="projects" className="py-24 bg-white dark:bg-dark transition-colors duration-500 overflow-hidden">
+      <div className="container mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="head_fonts text-4xl font-extrabold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-400 to-indigo-500"
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-20"
         >
-          My Projects
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-gray-300 max-w-2xl mx-auto"
-        >
-          Explore a collection of my web and AI projects—crafted with modern tools, creativity, and attention to user experience.
-        </motion.p>
-      </div>
+          <p className="text-emerald-500 font-black uppercase tracking-widest text-xs mb-4">Portfolio</p>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-800 dark:text-white leading-tight mb-4 uppercase tracking-tighter">
+            Featured <span className="text-emerald-500">SQA Projects</span>
+          </h2>
+        </motion.div>
 
-      <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {projects.map((project, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: index * 0.1, duration: 0.6 }}
-            className="group bg-white/5 hover:bg-white/10 backdrop-blur p-5 rounded-2xl shadow-xl border border-white/10 transition duration-300 hover:shadow-pink-500/30 flex flex-col gap-4 transform hover:-translate-y-2 relative"
-          >
-            <div className="w-full h-48 relative rounded-lg overflow-hidden">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-            </div>
-
-            <h3 className="text-xl font-semibold text-white group-hover:text-pink-400 transition">
-              {project.title}
-            </h3>
-            <p className="text-gray-300 text-sm">{project.description}</p>
-
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-auto inline-block self-start px-4 py-2 rounded-lg border border-pink-500 text-pink-400 font-medium text-sm hover:bg-pink-500 hover:text-white transition-all duration-300 hover:shadow-md hover:shadow-pink-500/40"
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-2 max-w-6xl mx-auto">
+          {projects.map((project, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, duration: 0.6 }}
+              className="group relative flex flex-col lg:flex-row gap-8 bg-slate-50 dark:bg-slate-800/30 p-8 rounded-[2.5rem] border border-slate-100 dark:border-slate-800 hover:border-emerald-500/50 transition-all hover:shadow-2xl hover:shadow-emerald-500/10"
             >
-              View Project →
-            </a>
-          </motion.div>
-        ))}
+              <div className="w-full lg:w-1/2 h-64 relative rounded-3xl overflow-hidden shadow-lg border-4 border-white dark:border-slate-700">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+              </div>
+
+              <div className="w-full lg:w-1/2 flex flex-col justify-center">
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag, i) => (
+                    <span key={i} className="px-3 py-1 bg-white dark:bg-slate-700 text-[10px] font-black uppercase tracking-widest text-emerald-600 dark:text-emerald-400 rounded-full shadow-sm">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-4 uppercase italic tracking-tight transition-colors group-hover:text-emerald-500">
+                  {project.title}
+                </h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed mb-6 font-medium">
+                  {project.description}
+                </p>
+
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-slate-900 dark:text-white hover:text-emerald-500 transition-colors"
+                >
+                  Explore Details <span>→</span>
+                </a>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
