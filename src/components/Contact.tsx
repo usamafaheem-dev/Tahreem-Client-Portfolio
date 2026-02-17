@@ -7,7 +7,7 @@ import { FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react
 const Contact = () => {
   return (
     <section id="contact" className="py-32 bg-[var(--background)] overflow-hidden">
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ const Contact = () => {
 
               <div className="space-y-10">
                 {[
-                  { icon: <FaEnvelope />, title: "Email Me", val: "tahreem@example.com", color: "text-violet-600" },
+                  { icon: <FaEnvelope />, title: "Email Me", val: "Tehreem@example.com", color: "text-violet-600" },
                   { icon: <FaPhone />, title: "Call Me", val: "+92 300 1234567", color: "text-fuchsia-600" },
                   { icon: <FaMapMarkerAlt />, title: "Location", val: "Punjab, Pakistan", color: "text-indigo-600" }
                 ].map((item, i) => (

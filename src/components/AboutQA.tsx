@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const AboutQA = () => {
     return (
         <section id="about" className="py-32 bg-[var(--background)] overflow-hidden relative">
-            <div className="container mx-auto px-6 relative z-10">
+            <div className="container mx-auto relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     {/* Left Column: Image with Experience Badge */}
                     <div className="relative">
@@ -24,7 +24,7 @@ const AboutQA = () => {
                             <div className="w-full h-full bg-gradient-to-br from-violet-600/5 to-fuchsia-600/5 flex items-center justify-center p-16">
                                 <img
                                     src="/images/about-sqa.png"
-                                    alt="About Tahreem"
+                                    alt="About Tehreem"
                                     className="w-full h-full object-contain filter drop-shadow-xl"
                                 />
                             </div>

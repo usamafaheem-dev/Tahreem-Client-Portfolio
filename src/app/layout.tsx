@@ -9,8 +9,8 @@ import Footer from "@/components/Footer";
 // Font imports removed in favor of Google Fonts Inter via globals.css
 
 export const metadata: Metadata = {
-  title: "Tahreem Arif - SQA Engineer Portfolio",
-  description: "Portfolio of Tahreem Arif, a detailed-oriented SQA Engineer specializing in Manual and Automation Testing for Web and Mobile applications.",
+  title: "Tehreem Arif - SQA Engineer Portfolio",
+  description: "Portfolio of Tehreem Arif, a detailed-oriented SQA Engineer specializing in Manual and Automation Testing for Web and Mobile applications.",
 };
 
 import { Providers } from "@/components/Providers";

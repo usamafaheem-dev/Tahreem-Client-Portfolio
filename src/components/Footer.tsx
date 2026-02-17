@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="bg-[var(--background)] text-slate-900 dark:text-white transition-colors duration-500 overflow-hidden">
       {/* Premium CTA Section */}
-      <div className="container mx-auto px-6 py-32 border-t border-slate-100 dark:border-white/5">
+      <div className="container mx-auto py-32 border-t border-slate-100 dark:border-white/5">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="text-center md:text-left">
             <h2 className="text-5xl md:text-7xl font-black font-outfit tracking-tighter leading-[0.9] mb-8">
@@ -27,13 +27,13 @@ export default function Footer() {
       </div>
 
       <div className="bg-slate-50 dark:bg-white/5 py-16 border-t border-slate-100 dark:border-white/5">
-        <div className="container mx-auto px-6">
+        <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center gap-12">
             {/* Brand */}
             <div className="text-center md:text-left">
               <div className="mb-6">
                 <span className="text-3xl font-black tracking-tighter font-outfit text-slate-900 dark:text-white flex items-center gap-1 justify-center md:justify-start">
-                  <span className="bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">Tahreem</span>
+                  <span className="bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">Tehreem</span>
                   <span className="opacity-80">Arif</span>
                 </span>
               </div>
@@ -59,7 +59,7 @@ export default function Footer() {
           </div>
 
           <div className="mt-20 pt-10 border-t border-slate-100 dark:border-white/5 text-center flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">
-            <p>&copy; {new Date().getFullYear()} Tahreem Arif. Quality First.</p>
+            <p>&copy; {new Date().getFullYear()} Tehreem Arif. Quality First.</p>
             <div className="flex gap-10">
               <a href="#" className="hover:text-violet-600 transition-colors">Privacy Policy</a>
               <a href="#" className="hover:text-violet-600 transition-colors">Terms of Service</a>

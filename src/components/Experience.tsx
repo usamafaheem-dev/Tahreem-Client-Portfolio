@@ -7,7 +7,7 @@ import { FaBriefcase, FaGraduationCap } from 'react-icons/fa';
 const Experience = () => {
     return (
         <section id="experience" className="py-32 bg-[var(--background)] overflow-hidden">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

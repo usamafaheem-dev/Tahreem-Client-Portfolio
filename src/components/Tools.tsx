@@ -24,7 +24,7 @@ const featureSkills = [
 const Tools = () => {
     return (
         <section id="skills" className="py-32 bg-[var(--background)] overflow-hidden">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
                     {/* Left: Progress Bars */}
                     <motion.div

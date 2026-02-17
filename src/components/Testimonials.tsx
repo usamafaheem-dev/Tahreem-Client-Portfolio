@@ -8,14 +8,14 @@ const testimonials = [
     {
         name: "Leslie Alexander",
         role: "Project Manager",
-        content: "Tahreem is an exceptional SQA engineer. Her attention to detail and ability to identify critical edge cases helped us launch our products with zero major bugs.",
+        content: "Tehreem is an exceptional SQA engineer. Her attention to detail and ability to identify critical edge cases helped us launch our products with zero major bugs.",
         rating: 5,
         image: "https://i.pravatar.cc/150?u=1"
     },
     {
         name: "Guy Hawkins",
         role: "CTO at VertexAI",
-        content: "Working with Tahreem was a breeze. She not only found bugs but also suggested UX improvements that made our bot much more user-friendly.",
+        content: "Working with Tehreem was a breeze. She not only found bugs but also suggested UX improvements that made our bot much more user-friendly.",
         rating: 5,
         image: "https://i.pravatar.cc/150?u=2"
     },
@@ -31,7 +31,7 @@ const testimonials = [
 const Testimonials = () => {
     return (
         <section className="py-32 bg-[var(--background)] relative overflow-hidden">
-            <div className="container mx-auto px-6">
+            <div className="container mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

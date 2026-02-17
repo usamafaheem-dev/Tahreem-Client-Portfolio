@@ -41,7 +41,7 @@ const SkillsQA = () => {
             {/* Background Light */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-violet-600/5 rounded-full blur-[120px] pointer-events-none"></div>
 
-            <div className="container mx-auto px-6 relative z-10">
+            <div className="container mx-auto relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}

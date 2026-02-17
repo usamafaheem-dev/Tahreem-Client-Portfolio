@@ -7,19 +7,19 @@ const posts = [
     {
         title: "Blog About Personal Portfolio",
         date: "08 February 2025",
-        author: "Tahreem Arif",
+        author: "Tehreem Arif",
         image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop"
     },
     {
         title: "How to Build a Design System",
         date: "12 February 2025",
-        author: "Tahreem Arif",
+        author: "Tehreem Arif",
         image: "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=800&auto=format&fit=crop"
     },
     {
         title: "The Future of QA Automation",
         date: "15 February 2025",
-        author: "Tahreem Arif",
+        author: "Tehreem Arif",
         image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=800&auto=format&fit=crop"
     }
 ];
