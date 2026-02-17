@@ -130,7 +130,8 @@ export default function Navbar() {
             animate={{ opacity: 1, height: "100vh" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:hidden absolute top-0 left-0 w-full bg-white/95 dark:bg-[#020110]/98 backdrop-blur-3xl z-[60] overflow-hidden flex flex-col"
+            className={`lg:hidden fixed top-0 left-0 w-full backdrop-blur-3xl z-[60] overflow-hidden flex flex-col ${theme === "dark" ? "bg-[#020110]/98 text-white" : "bg-white/95 text-slate-900"
+              }`}
           >
             {/* Mobile Menu Header */}
             <div className="flex justify-between items-center px-6 py-6 border-b border-slate-100 dark:border-white/5">
