@@ -4,9 +4,7 @@ import SkillsQA from "@/components/SkillsQA";
 import Tools from "@/components/Tools";
 import ProjectsQA from "@/components/ProjectsQA";
 import Testimonials from "@/components/Testimonials";
-import Experience from "@/components/Experience";
-import Certifications from "@/components/Certifications";
-import Blog from "@/components/Blog";
+import ExperienceQA from "@/components/ExperienceQA";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -18,9 +16,7 @@ export default function Home() {
       <Tools />
       <ProjectsQA />
       <Testimonials />
-      <Experience />
-      <Certifications />
-      <Blog />
+      <ExperienceQA />
       <Contact />
     </main>
   );

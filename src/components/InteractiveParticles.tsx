@@ -31,7 +31,7 @@ const InteractiveParticles = () => {
         let height = canvas.height = window.innerHeight;
 
         let particles: Particle[] = [];
-        const particleCount = 80;
+        const particleCount = 100;
         const mouse = {
             x: -2000,
             y: -2000,
@@ -39,8 +39,7 @@ const InteractiveParticles = () => {
         };
 
         const colors = [
-            '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF',
-            '#FFA500', '#800080', '#008000', '#FFC0CB', '#8b5cf6', '#d946ef'
+            '#06b6d4', '#d946ef', '#8b5cf6', '#10b981', '#f59e0b', '#3b82f6'
         ];
 
         const init = () => {
@@ -53,7 +52,7 @@ const InteractiveParticles = () => {
                     y,
                     originX: x,
                     originY: y,
-                    size: Math.random() * 6 + 4,
+                    size: Math.random() * 8 + 6,
                     color: colors[Math.floor(Math.random() * colors.length)],
                     vx: (Math.random() - 0.5) * 2,
                     vy: (Math.random() - 0.5) * 2,
@@ -96,7 +95,7 @@ const InteractiveParticles = () => {
                 ctx.rotate(p.rotation * Math.PI / 180);
 
                 ctx.fillStyle = p.color;
-                ctx.shadowBlur = 5;
+                ctx.shadowBlur = 10;
                 ctx.shadowColor = p.color;
 
                 ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
@@ -134,7 +133,7 @@ const InteractiveParticles = () => {
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 pointer-events-none z-0 opacity-40 dark:opacity-50"
+            className="absolute inset-0 pointer-events-none z-0 opacity-60 dark:opacity-80"
         />
     );
 };

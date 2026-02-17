@@ -85,8 +85,8 @@ export default function Navbar() {
               }}
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
               className={`relative z-10 w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center transition-all duration-500 ${theme === "dark"
-                  ? "bg-violet-600 shadow-[0_0_15px_rgba(139,92,246,0.6)]"
-                  : "bg-white shadow-md"
+                ? "bg-violet-600 shadow-[0_0_15px_rgba(139,92,246,0.6)]"
+                : "bg-white shadow-md"
                 }`}
             >
               <AnimatePresence mode="wait" initial={false}>

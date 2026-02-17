@@ -99,14 +99,18 @@ const Hero = () => {
       {/* 1. ATMOSPHERIC BACKGROUND (Dynamic Follower) */}
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
         {/* Grid Layer */}
-        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.08]"
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.15]"
           style={{ backgroundImage: 'linear-gradient(#8b5cf6 0.5px, transparent 0.5px), linear-gradient(90deg, #8b5cf6 0.5px, transparent 0.5px)', backgroundSize: '60px 60px' }}
         />
+
+        {/* Static Ambient Glows */}
+        <div className="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-violet-600/10 blur-[120px] rounded-full hidden dark:block" />
+        <div className="absolute -bottom-[10%] -right-[10%] w-[40%] h-[40%] bg-fuchsia-600/10 blur-[120px] rounded-full hidden dark:block" />
 
         {/* Cursor Spotlight Follower */}
         <motion.div
           style={{ x: lightX, y: lightY }}
-          className="absolute inset-[-50%] bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08)_0%,transparent_50%)] dark:bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.15)_0%,transparent_50%)] z-0"
+          className="absolute inset-[-50%] bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08)_0%,transparent_50%)] dark:bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.25)_0%,transparent_50%)] z-0"
         />
 
         {/* Dynamic Interactive Particles (Antigravity Effect) */}
@@ -304,28 +308,28 @@ const Hero = () => {
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                 className="absolute inset-[-15%] sm:inset-[-5%] pointer-events-none z-50 scale-75 sm:scale-100"
               >
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_30px_rgba(192,38,211,0.4)] text-violet-600 -rotate-12 transition-transform hover:scale-110">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-violet-600 -rotate-12 transition-transform hover:scale-110">
                   <SiSelenium size={18} className="sm:w-[22px] sm:h-[22px]" />
                 </div>
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_30px_rgba(192,38,211,0.4)] text-emerald-500 rotate-12 transition-transform hover:scale-110">
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-emerald-500 rotate-12 transition-transform hover:scale-110">
                   <SiCypress size={18} className="sm:w-[22px] sm:h-[22px]" />
                 </div>
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_30px_rgba(192,38,211,0.4)] text-orange-500 rotate-45 transition-transform hover:scale-110">
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-orange-500 rotate-45 transition-transform hover:scale-110">
                   <SiPostman size={18} className="sm:w-[22px] sm:h-[22px]" />
                 </div>
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_30px_rgba(192,38,211,0.4)] text-rose-500 -rotate-45 transition-transform hover:scale-110">
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-rose-500 -rotate-45 transition-transform hover:scale-110">
                   <SiAppium size={18} className="sm:w-[22px] sm:h-[22px]" />
                 </div>
-                <div className="absolute top-[15%] left-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_30px_rgba(192,38,211,0.4)] text-blue-500 rotate-12 transition-transform hover:scale-110">
+                <div className="absolute top-[15%] left-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-blue-500 rotate-12 transition-transform hover:scale-110">
                   <SiJavascript size={16} className="sm:w-[20px] sm:h-[20px]" />
                 </div>
-                <div className="absolute bottom-[15%] right-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_30px_rgba(192,38,211,0.4)] text-yellow-500 -rotate-12 transition-transform hover:scale-110">
+                <div className="absolute bottom-[15%] right-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-yellow-500 -rotate-12 transition-transform hover:scale-110">
                   <SiPython size={16} className="sm:w-[20px] sm:h-[20px]" />
                 </div>
-                <div className="absolute top-[15%] right-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_30px_rgba(192,38,211,0.4)] text-slate-700 dark:text-white rotate-45 transition-transform hover:scale-110">
+                <div className="absolute top-[15%] right-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-slate-700 dark:text-white rotate-45 transition-transform hover:scale-110">
                   <FaGithub size={16} className="sm:w-[20px] sm:h-[20px]" />
                 </div>
-                <div className="absolute bottom-[15%] left-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_30px_rgba(192,38,211,0.4)] text-red-500 -rotate-45 transition-transform hover:scale-110">
+                <div className="absolute bottom-[15%] left-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-red-500 -rotate-45 transition-transform hover:scale-110">
                   <FaBug size={16} className="sm:w-[20px] sm:h-[20px]" />
                 </div>
               </motion.div>

@@ -10,6 +10,7 @@ const projects = [
         link: "https://dradlerbot.vertexaitec.com/",
         type: "Web Application",
         icon: <FaGlobe />,
+        image: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1400&auto=format&fit=crop",
         description: "AI-powered medical assistant bot designed to provide preliminary health advice.",
         testing: ["Functional Testing", "Chatbot Logic Validation", "UI Responsiveness", "API Integration Testing"],
         tools: ["Selenium", "Postman", "Jira"],
@@ -21,6 +22,7 @@ const projects = [
         link: "https://liplock.vercel.app/",
         type: "Web Application",
         icon: <FaGlobe />,
+        image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1400&auto=format&fit=crop",
         description: "E-commerce platform for fast-fashion cosmetics.",
         testing: ["E-commerce Flow Validation", "Payment Gateway Testing", "Cross-Browser Compatibility"],
         tools: ["Cypress", "Trello", "Chrome DevTools"],
@@ -32,6 +34,7 @@ const projects = [
         link: "https://redfin-omega.vercel.app/",
         type: "Web Application",
         icon: <FaGlobe />,
+        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1400&auto=format&fit=crop",
         description: "Real estate innovation platform for property tracking.",
         testing: ["Search Filter Logic", "User Authentication", "Data Consistency Checks"],
         tools: ["Manual Testing", "SQL", "Bugzilla"],
@@ -43,6 +46,7 @@ const projects = [
         link: "https://kyakh-web.vercel.app/",
         type: "Web Application",
         icon: <FaGlobe />,
+        image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1400&auto=format&fit=crop",
         description: "Social networking platform for niche communities.",
         testing: ["Feed Algorithm Testing", "Real-time Notification Checks", "Profile Management"],
         tools: ["JMeter", "Selenium", "Slack"],
@@ -54,6 +58,7 @@ const projects = [
         link: "#",
         type: "Mobile Application",
         icon: <FaMobileAlt />,
+        image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1400&auto=format&fit=crop",
         description: "Lifestyle tracking app for daily hydration and health habits.",
         testing: ["Mobile Usability", "Battery Usage Testing", "Push Notifications"],
         tools: ["Appium", "Xcode", "Android Studio"],
@@ -65,6 +70,7 @@ const projects = [
         link: "#",
         type: "Mobile Application",
         icon: <FaMobileAlt />,
+        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1400&auto=format&fit=crop",
         description: "Short-form video sharing platform with social features.",
         testing: ["Video Playback Performance", "Social Sharing Integration", "Gestures & Navigation"],
         tools: ["Appium", "Charles Proxy", "TestFlight"],
@@ -75,104 +81,160 @@ const projects = [
 
 const ProjectsQA = () => {
     const [activeFilter, setActiveFilter] = React.useState("All");
-    const filters = ["All", "Manual", "Automation", "API", "Mobile"];
+    const filters = ["All", "Web", "App"];
 
     const filteredProjects = activeFilter === "All"
         ? projects
-        : projects.filter(p => p.testing.some(t => t.includes(activeFilter)) || p.type.includes(activeFilter));
+        : projects.filter(p => {
+            if (activeFilter === "Web") return p.type === "Web Application";
+            if (activeFilter === "App") return p.type === "Mobile Application";
+            return true;
+        });
 
     return (
-        <section id="projects" className="py-32 bg-[var(--background)]">
-            <div className="container mx-auto">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
-                    <h2 className="text-4xl md:text-6xl font-outfit font-black text-slate-900 dark:text-white mb-6">
-                        Review My <span className="text-violet-600">Latest</span> Projects
-                    </h2>
+        <section id="projects" className="py-24 md:py-32 bg-[var(--background)] relative overflow-hidden">
+            {/* Dynamic Background Blobs for Depth */}
+            <motion.div
+                animate={{
+                    scale: [1, 1.2, 1],
+                    x: [0, 50, 0],
+                    y: [0, 30, 0]
+                }}
+                transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+                className="absolute top-20 left-1/4 w-[600px] h-[600px] bg-violet-600/5 blur-[150px] rounded-full pointer-events-none"
+            />
+            <motion.div
+                animate={{
+                    scale: [1, 1.3, 1],
+                    x: [0, -40, 0],
+                    y: [0, -50, 0]
+                }}
+                transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
+                className="absolute bottom-20 right-1/4 w-[600px] h-[600px] bg-fuchsia-600/5 blur-[150px] rounded-full pointer-events-none"
+            />
+            <div className="absolute top-1/2 left-0 w-96 h-96 bg-blue-600/5 blur-[120px] rounded-full pointer-events-none" />
 
-                    {/* Filter Bar */}
-                    <div className="flex flex-wrap justify-center gap-4 mt-12 overflow-x-auto pb-4">
+            <div className="container mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
+                <div className="flex flex-col items-center mb-16 md:mb-24">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6 }}
+                        viewport={{ once: true }}
+                        className="text-center max-w-3xl"
+                    >
+                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-600/10 border border-violet-600/20 mb-6 font-black uppercase tracking-[0.2em] text-[9px] text-violet-600">
+                            <span className="w-1.5 h-1.5 rounded-full bg-violet-600 animate-pulse" />
+                            Portfolio Showcase
+                        </div>
+                        <h2 className="text-4xl md:text-5xl lg:text-6xl font-black font-outfit text-slate-900 dark:text-white leading-[1.1] mb-8">
+                            Review My <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-500">Latest Works</span>
+                        </h2>
+                    </motion.div>
+
+                    {/* Filter Bar - Responsive & Premium */}
+                    <div className="flex items-center p-1.5 bg-white/50 dark:bg-white/5 backdrop-blur-3xl rounded-2xl border border-slate-200/50 dark:border-white/10 shadow-sm overflow-x-auto max-w-full">
                         {filters.map((filter) => (
                             <button
                                 key={filter}
                                 onClick={() => setActiveFilter(filter)}
-                                className={`px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${activeFilter === filter
-                                    ? "bg-violet-600 text-white shadow-xl shadow-violet-500/20"
-                                    : "bg-white dark:bg-white/5 text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-white/5 hover:border-violet-500/50"
+                                className={`px-5 md:px-8 py-2 md:py-2.5 rounded-xl text-[9px] md:text-[10px] font-black uppercase tracking-wider transition-all duration-300 whitespace-nowrap ${activeFilter === filter
+                                    ? "bg-white dark:bg-slate-800 text-violet-600 shadow-xl shadow-violet-500/10"
+                                    : "text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
                                     }`}
                             >
                                 {filter}
                             </button>
                         ))}
                     </div>
-                </motion.div>
+                </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <motion.div
+                    layout
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
+                >
                     {filteredProjects.map((project, index) => (
                         <motion.div
-                            key={index}
+                            key={project.title}
                             layout
-                            initial={{ opacity: 0, scale: 0.9 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ duration: 0.5, delay: index * 0.05 }}
                             viewport={{ once: true }}
-                            className="group relative bg-white dark:bg-white/5 rounded-[40px] border border-slate-100 dark:border-white/5 overflow-hidden shadow-2xl shadow-slate-200/50 dark:shadow-none"
+                            className="group relative h-full"
                         >
-                            {/* Project Image Container with Padding */}
-                            <div className="relative p-6 pb-0 group">
-                                <motion.div
-                                    animate={{ y: [0, -10, 0] }}
-                                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                                    className="relative aspect-[16/10] overflow-hidden rounded-[30px] bg-slate-100 dark:bg-slate-800 shadow-lg"
-                                >
-                                    <div className="absolute inset-0 bg-gradient-to-br from-violet-600/40 to-fuchsia-600/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex items-center justify-center">
-                                        <a href={project.link} target="_blank" className="p-5 rounded-full bg-white text-violet-600 shadow-2xl scale-0 group-hover:scale-100 transition-transform duration-500">
-                                            <FaExternalLinkAlt size={20} />
-                                        </a>
+                            <div className="h-full bg-white dark:bg-slate-800/80 backdrop-blur-2xl rounded-[40px] border border-slate-200 dark:border-white/20 overflow-hidden flex flex-col transition-all duration-700 hover:shadow-[0_30px_70px_-15px_rgba(147,51,234,0.3)] hover:border-violet-500/50 hover:-translate-y-3 shadow-xl dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] relative group/card">
+                                {/* Subtle Inner Glow for Dark Mode */}
+                                <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
+                                {/* Image Area - Enhanced with Fallback Color */}
+                                <div className="relative aspect-[4/3] overflow-hidden m-3 rounded-[32px] bg-slate-100 dark:bg-slate-700">
+                                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 flex flex-col justify-end p-8">
+                                        <motion.a
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            href={project.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center gap-3 bg-white text-slate-900 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-violet-600 hover:text-white transition-all shadow-2xl"
+                                        >
+                                            View Project <FaExternalLinkAlt size={12} />
+                                        </motion.a>
                                     </div>
                                     <img
-                                        src={`https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1470&auto=format&fit=crop&u=${index}`}
+                                        src={project.image}
                                         alt={project.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
                                     />
-
                                     <div className="absolute top-4 left-4 z-20">
-                                        <span className="px-3 py-1.5 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-[9px] font-black uppercase tracking-widest text-white">
-                                            {project.type}
-                                        </span>
-                                    </div>
-                                </motion.div>
-                            </div>
-
-                            <div className="p-10">
-                                <div className="flex justify-between items-center mb-4">
-                                    <h3 className="text-3xl font-black font-outfit text-slate-900 dark:text-white">
-                                        {project.title}
-                                    </h3>
-                                    <div className="w-10 h-10 rounded-full bg-violet-100 dark:bg-violet-900/40 flex items-center justify-center text-violet-600">
-                                        {project.icon}
+                                        <div className="px-4 py-2 rounded-2xl bg-black/30 backdrop-blur-xl border border-white/20 text-[8px] font-black uppercase tracking-[0.2em] text-white shadow-xl">
+                                            {project.type === "Web Application" ? "Web Native" : "App Interface"}
+                                        </div>
                                     </div>
                                 </div>
-                                <p className="text-slate-500 dark:text-slate-400 font-medium mb-8">
-                                    {project.description}
-                                </p>
 
-                                <div className="flex flex-wrap gap-2">
-                                    {project.tools.map((tool, i) => (
-                                        <span key={i} className="px-4 py-1.5 rounded-full bg-slate-50 dark:bg-white/5 text-[10px] font-black uppercase tracking-widest text-slate-400 border border-slate-100 dark:border-white/5">
-                                            {tool}
-                                        </span>
-                                    ))}
+                                {/* Content Area */}
+                                <div className="px-8 pb-10 pt-4 flex-grow flex flex-col">
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div>
+                                            <h3 className="text-2xl font-black font-outfit text-slate-900 dark:text-white leading-tight mb-2 group-hover:text-violet-600 transition-colors">
+                                                {project.title}
+                                            </h3>
+                                            <div className="flex items-center gap-2">
+                                                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                                                <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest">Live System</span>
+                                            </div>
+                                        </div>
+                                        <div className="text-2xl text-violet-600/30 group-hover:text-violet-600 group-hover:rotate-12 transition-all duration-500">
+                                            {project.icon}
+                                        </div>
+                                    </div>
+
+                                    <p className="text-[12px] text-slate-500 dark:text-slate-400 font-medium line-clamp-2 mb-8 leading-relaxed group-hover:text-slate-700 dark:group-hover:text-slate-300 transition-colors">
+                                        {project.description}
+                                    </p>
+
+                                    <div className="mt-auto">
+                                        <div className="flex flex-wrap gap-2">
+                                            {project.tools.slice(0, 3).map((tool, i) => (
+                                                <span key={i} className="px-3.5 py-1.5 rounded-xl bg-slate-50 dark:bg-white/5 text-[9px] font-black uppercase tracking-wider text-slate-500 dark:text-slate-400 border border-slate-100 dark:border-white/5 transition-all group-hover:bg-violet-600/10 group-hover:border-violet-600/30 group-hover:text-violet-600">
+                                                    {tool}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </motion.div>
                     ))}
-                </div>
+                </motion.div>
+
+                {filteredProjects.length === 0 && (
+                    <div className="text-center py-20">
+                        <div className="text-slate-300 dark:text-slate-700 font-black uppercase tracking-[0.5em] text-lg mb-4">Empty Stack</div>
+                        <p className="text-slate-400 dark:text-slate-500 font-medium">No projects matching this filter yet.</p>
+                    </div>
+                )}
             </div>
         </section>
     );

@@ -2,61 +2,119 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaLinkedin, FaGithub, FaMapMarkerAlt } from 'react-icons/fa';
+import {
+  FaEnvelope,
+  FaPhone,
+  FaLinkedin,
+  FaGithub,
+  FaLocationDot,
+  FaPaperPlane
+} from 'react-icons/fa6';
 
 const Contact = () => {
   return (
-    <section id="contact" className="py-32 bg-[var(--background)] overflow-hidden">
-      <div className="container mx-auto">
+    <section id="contact" className="py-24 md:py-32 bg-[var(--background)] overflow-hidden relative">
+      {/* Ambient Animated Background Elements */}
+      <div className="absolute top-0 right-[-10%] w-[500px] h-[500px] bg-violet-500/10 blur-[120px] rounded-full animate-blob hidden dark:block" />
+      <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-fuchsia-500/10 blur-[120px] rounded-full animate-blob animation-delay-2000 hidden dark:block" />
+
+      {/* Light Mode subtle accents */}
+      <div className="absolute top-20 left-10 w-64 h-64 bg-violet-100 rounded-full blur-3xl opacity-50 dark:hidden" />
+      <div className="absolute bottom-20 right-10 w-64 h-64 bg-fuchsia-100 rounded-full blur-3xl opacity-50 dark:hidden" />
+
+      <div className="container mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-center mb-24"
+          className="max-w-4xl mx-auto text-center mb-16 md:mb-24"
         >
-          <p className="text-violet-600 font-black uppercase tracking-widest text-[10px] mb-6">Get In Touch</p>
-          <h2 className="text-4xl md:text-6xl font-black font-outfit text-slate-900 dark:text-white leading-[1.1] mb-4">
-            Let's Start A <span className="text-violet-600">Project Together</span>
+          <motion.span
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="inline-block px-4 py-1.5 rounded-full bg-violet-100 dark:bg-violet-900/30 text-violet-600 dark:text-violet-400 text-[10px] md:text-xs font-black uppercase tracking-[0.2em] mb-6 border border-violet-200 dark:border-violet-500/20"
+          >
+            Get In Touch
+          </motion.span>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-black font-outfit text-slate-900 dark:text-white leading-[1.05] mb-6 tracking-tight">
+            Let's build something <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600">extraordinary</span>
           </h2>
+          <p className="text-slate-600 dark:text-slate-400 text-base md:text-lg max-w-2xl mx-auto font-medium">
+            Have a project in mind or just want to say hi? I'm always open to discussing new opportunities and creative ideas.
+          </p>
         </motion.div>
 
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-          {/* Contact Info */}
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-stretch">
+          {/* Contact Details Card */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
-            className="lg:col-span-5 space-y-10"
+            className="lg:col-span-5 h-full"
           >
-            <div className="bg-white dark:bg-white/5 p-12 rounded-[50px] border border-slate-100 dark:border-white/5 shadow-2xl shadow-slate-200/50 dark:shadow-none">
-              <h3 className="text-3xl font-black font-outfit text-slate-900 dark:text-white mb-10 tracking-tighter uppercase">Contact Info</h3>
+            <div className="h-full bg-white/70 dark:bg-white/[0.03] backdrop-blur-2xl p-8 md:p-12 rounded-[40px] md:rounded-[50px] border border-slate-200/50 dark:border-white/10 shadow-xl shadow-slate-200/40 dark:shadow-none flex flex-col justify-between">
+              <div>
+                <h3 className="text-2xl md:text-3xl font-black font-outfit text-slate-900 dark:text-white mb-8 md:mb-12 tracking-tight">Contact Information</h3>
 
-              <div className="space-y-10">
-                {[
-                  { icon: <FaEnvelope />, title: "Email Me", val: "Tehreem@example.com", color: "text-violet-600" },
-                  { icon: <FaPhone />, title: "Call Me", val: "+92 300 1234567", color: "text-fuchsia-600" },
-                  { icon: <FaMapMarkerAlt />, title: "Location", val: "Punjab, Pakistan", color: "text-indigo-600" }
-                ].map((item, i) => (
-                  <div key={i} className="flex gap-6 group">
-                    <div className={`w-16 h-16 rounded-3xl bg-slate-50 dark:bg-white/5 flex items-center justify-center text-2xl ${item.color} group-hover:scale-110 group-hover:bg-violet-600 group-hover:text-white transition-all duration-500 shadow-sm`}>
-                      {item.icon}
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">{item.title}</p>
-                      <p className="text-slate-900 dark:text-white font-bold tracking-tight">{item.val}</p>
-                    </div>
-                  </div>
-                ))}
+                <div className="space-y-6 md:space-y-8">
+                  {[
+                    {
+                      icon: <FaEnvelope />,
+                      title: "Email",
+                      val: "Tehreem@example.com",
+                      gradient: "from-violet-500 to-indigo-500"
+                    },
+                    {
+                      icon: <FaPhone />,
+                      title: "Phone",
+                      val: "+92 334 4248673",
+                      gradient: "from-fuchsia-500 to-pink-500"
+                    },
+                    {
+                      icon: <FaLocationDot />,
+                      title: "Location",
+                      val: "Punjab, Pakistan",
+                      gradient: "from-blue-500 to-cyan-500"
+                    }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3 + (i * 0.1) }}
+                      viewport={{ once: true }}
+                      className="flex items-center gap-5 md:gap-6 group"
+                    >
+                      <div className={`w-12 h-12 md:w-16 md:h-16 rounded-2xl md:rounded-[24px] bg-gradient-to-br ${item.gradient} p-[1px] group-hover:scale-110 transition-transform duration-500`}>
+                        <div className="w-full h-full rounded-[23px] bg-white dark:bg-slate-900 flex items-center justify-center text-xl md:text-2xl text-slate-900 dark:text-white group-hover:bg-transparent group-hover:text-white transition-all duration-500">
+                          {item.icon}
+                        </div>
+                      </div>
+                      <div>
+                        <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-0.5 md:mb-1">{item.title}</p>
+                        <p className="text-slate-900 dark:text-white font-bold text-sm md:text-base tracking-tight">{item.val}</p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
 
-              <div className="mt-12 pt-12 border-t border-slate-100 dark:border-white/5">
-                <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-8">Social Connect</p>
-                <div className="flex gap-4">
-                  {[<FaLinkedin key="linkedin" />, <FaGithub key="github" />].map((icon, i) => (
-                    <a key={i} href="#" className="w-14 h-14 rounded-[20px] bg-slate-900 dark:bg-white text-white dark:text-slate-900 flex items-center justify-center hover:bg-violet-600 dark:hover:bg-violet-600 dark:hover:text-white transition-all hover:-translate-y-2 shadow-xl">
-                      {icon}
+              <div className="mt-12 pt-12 border-t border-slate-200/50 dark:border-white/[0.05]">
+                <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-6 md:mb-8">Follow My Journey</p>
+                <div className="flex gap-3 md:gap-4">
+                  {[
+                    { icon: <FaLinkedin />, color: "hover:bg-[#0077b5]", href: "#" },
+                    { icon: <FaGithub />, color: "hover:bg-[#333]", href: "#" }
+                  ].map((social, i) => (
+                    <a
+                      key={i}
+                      href={social.href}
+                      className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl md:rounded-[20px] bg-slate-900 dark:bg-white/10 text-white flex items-center justify-center ${social.color} transition-all duration-300 hover:-translate-y-2 shadow-lg shadow-slate-900/10`}
+                    >
+                      <span className="text-xl md:text-2xl">{social.icon}</span>
                     </a>
                   ))}
                 </div>
@@ -64,33 +122,53 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          {/* Contact Form */}
+          {/* Contact Form Card */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            className="lg:col-span-7"
+            className="lg:col-span-7 h-full"
           >
-            <div className="bg-white dark:bg-white/5 p-12 rounded-[50px] border border-slate-100 dark:border-white/5 shadow-2xl shadow-slate-200/50 dark:shadow-none">
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="md:col-span-1">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4 mb-3 block">Full Name</label>
-                  <input type="text" className="w-full px-8 py-5 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 focus:outline-none focus:border-violet-500 dark:text-white transition-all font-medium" placeholder="John Doe" />
+            <div className="h-full bg-white dark:bg-white/[0.03] backdrop-blur-2xl p-8 md:p-12 rounded-[40px] md:rounded-[50px] border border-slate-200/50 dark:border-white/10 shadow-xl shadow-slate-200/40 dark:shadow-none">
+              <form className="space-y-6 md:space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+                  <div className="group">
+                    <label className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-2 mb-2 md:mb-3 block group-focus-within:text-violet-500 transition-colors">Full Name</label>
+                    <input
+                      type="text"
+                      className="w-full px-6 md:px-8 py-4 md:py-5 rounded-2xl md:rounded-[24px] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 dark:text-white transition-all font-semibold placeholder:text-slate-300 dark:placeholder:text-slate-700 text-sm md:text-base"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div className="group">
+                    <label className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-2 mb-2 md:mb-3 block group-focus-within:text-violet-500 transition-colors">Email Address</label>
+                    <input
+                      type="email"
+                      className="w-full px-6 md:px-8 py-4 md:py-5 rounded-2xl md:rounded-[24px] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 dark:text-white transition-all font-semibold placeholder:text-slate-300 dark:placeholder:text-slate-700 text-sm md:text-base"
+                      placeholder="john@example.com"
+                    />
+                  </div>
                 </div>
-                <div className="md:col-span-1">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4 mb-3 block">Email Address</label>
-                  <input type="email" className="w-full px-8 py-5 rounded-3xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 focus:outline-none focus:border-violet-500 dark:text-white transition-all font-medium" placeholder="john@example.com" />
+
+                <div className="group">
+                  <label className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-2 mb-2 md:mb-3 block group-focus-within:text-violet-500 transition-colors">Your Message</label>
+                  <textarea
+                    rows={5}
+                    className="w-full px-6 md:px-8 py-4 md:py-5 rounded-[30px] md:rounded-[40px] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 dark:text-white transition-all font-semibold placeholder:text-slate-300 dark:placeholder:text-slate-700 text-sm md:text-base resize-none"
+                    placeholder="Tell me about your project..."
+                  ></textarea>
                 </div>
-                <div className="md:col-span-2">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4 mb-3 block">Message</label>
-                  <textarea rows={6} className="w-full px-8 py-5 rounded-[40px] bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5 focus:outline-none focus:border-violet-500 dark:text-white transition-all font-medium" placeholder="How can I help you today?"></textarea>
-                </div>
-                <div className="md:col-span-2">
-                  <button type="submit" className="w-full py-6 rounded-3xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black uppercase tracking-widest text-xs shadow-2xl shadow-violet-500/20 hover:scale-[1.02] active:scale-95 transition-all">
-                    Send Message Now
-                  </button>
-                </div>
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full py-5 md:py-6 rounded-2xl md:rounded-[24px] bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black uppercase tracking-widest text-[10px] md:text-xs shadow-xl shadow-slate-900/10 flex items-center justify-center gap-3 group transition-all"
+                >
+                  <span>Send Message</span>
+                  <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </motion.button>
               </form>
             </div>
           </motion.div>

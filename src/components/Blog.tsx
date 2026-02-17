@@ -26,8 +26,12 @@ const posts = [
 
 const Blog = () => {
     return (
-        <section id="blog" className="py-32 bg-[var(--background)] overflow-hidden">
-            <div className="container mx-auto px-6">
+        <section id="blog" className="py-32 bg-[var(--background)] overflow-hidden relative">
+            {/* Ambient Background Glows */}
+            <div className="absolute top-0 right-0 w-96 h-96 bg-violet-600/10 blur-[120px] rounded-full hidden dark:block" />
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-fuchsia-600/10 blur-[120px] rounded-full hidden dark:block" />
+
+            <div className="container mx-auto px-6 sm:px-12 lg:px-20 relative z-10">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
