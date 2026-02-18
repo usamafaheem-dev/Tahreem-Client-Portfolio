@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { SiSelenium, SiCypress, SiPostman, SiAppium, SiJavascript, SiPython } from 'react-icons/si';
 import { FaChevronRight, FaRocket, FaShield, FaMicroscope, FaGithub, FaBug } from 'react-icons/fa6';
@@ -58,7 +59,7 @@ const Hero = () => {
       setWordIndex((prev) => (prev + 1) % qaWords.length);
     }, 2500);
     return () => clearInterval(interval);
-  }, []);
+  }, [qaWords.length]);
 
   // Typewriter effect state
   // Typewriter effect state
@@ -93,7 +94,7 @@ const Hero = () => {
 
     const timer = setTimeout(handleType, typingSpeed);
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, sentenceIndex, typingSpeed]);
+  }, [displayText, isDeleting, sentenceIndex, typingSpeed, sentences]);
 
   // Parallax Transitions
   const rotateX = useTransform(dy, [-0.5, 0.5], [15, -15]);
@@ -260,12 +261,13 @@ const Hero = () => {
                 <motion.div
                   animate={{ y: [0, -25, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                  className="relative z-30 w-full h-auto flex items-center justify-center -mt-6"
+                  className="relative z-30 w-full h-[350px] flex items-center justify-center -mt-6"
                 >
-                  <img
+                  <Image
                     src={heroData.heroImage}
                     alt="QA AI Assistant"
-                    className="w-[105%] h-auto object-contain group-hover:scale-105 transition-transform duration-700"
+                    fill
+                    className="object-contain group-hover:scale-105 transition-transform duration-700"
                   />
                 </motion.div>
 

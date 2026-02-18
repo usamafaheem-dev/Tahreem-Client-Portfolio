@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 const posts = [
@@ -61,7 +62,7 @@ const Blog = () => {
                                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }}
                                     className="relative aspect-[16/10] rounded-[35px] overflow-hidden mb-8 shadow-xl shadow-slate-200/50 dark:shadow-none bg-slate-100 dark:bg-white/5"
                                 >
-                                    <img src={post.image} alt={post.title} className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" />
+                                    <Image src={post.image} alt={post.title} fill className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-1000" />
                                     <div className="absolute top-4 left-4 px-4 py-1.5 bg-white/80 backdrop-blur-md rounded-full text-[9px] font-black uppercase tracking-widest text-slate-900 border border-white/20">
                                         {post.date}
                                     </div>

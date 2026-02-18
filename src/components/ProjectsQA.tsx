@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { FaGlobe, FaMobileAlt, FaExternalLinkAlt } from 'react-icons/fa';
 import { usePortfolio } from '@/context/PortfolioContext';
@@ -110,10 +111,11 @@ const ProjectsQA = () => {
                                             View Project <FaExternalLinkAlt size={12} />
                                         </motion.a>
                                     </div>
-                                    <img
+                                    <Image
                                         src={project.image}
                                         alt={project.title}
-                                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
                                     />
                                     <div className="absolute top-4 left-4 z-20">
                                         <div className="px-4 py-2 rounded-2xl bg-black/30 backdrop-blur-xl border border-white/20 text-[8px] font-black uppercase tracking-[0.2em] text-white shadow-xl">

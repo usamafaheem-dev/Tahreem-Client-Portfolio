@@ -89,10 +89,11 @@ const AboutQA = () => {
                             />
 
                             <div className="relative aspect-square w-[240px] md:w-[380px] flex items-center justify-center z-10 p-4">
-                                <img
+                                <Image
                                     src={aboutData.aboutImage}
                                     alt="Tehreem - SQA Engineer"
-                                    className="w-full h-full object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-transform duration-500 group-hover:scale-105"
+                                    fill
+                                    className="object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-transform duration-500 group-hover:scale-105"
                                 />
                             </div>
 

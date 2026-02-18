@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
     FaSave, FaPlus, FaTrash, FaUpload, FaSpinner, FaImage,
@@ -308,7 +309,7 @@ const AdminDashboard = () => {
                                 <Card title="Hero Image" icon={<FaImage className="text-violet-500" />}>
                                     <div className="flex flex-col sm:flex-row items-start gap-5">
                                         <div className="w-32 h-32 bg-slate-100 rounded-2xl overflow-hidden border-2 border-dashed border-slate-200 flex items-center justify-center relative flex-shrink-0">
-                                            {data.hero.heroImage ? <img src={data.hero.heroImage} alt="Hero" className="w-full h-full object-cover" /> : <FaImage className="text-3xl text-slate-300" />}
+                                            {data.hero.heroImage ? <Image src={data.hero.heroImage} alt="Hero" fill className="object-cover" /> : <FaImage className="text-3xl text-slate-300" />}
                                             {uploading === 'hero.heroImage' && <div className="absolute inset-0 bg-white/80 flex items-center justify-center"><FaSpinner className="animate-spin text-violet-500 text-xl" /></div>}
                                         </div>
                                         <div>
@@ -387,7 +388,7 @@ const AdminDashboard = () => {
                                 <Card title="About Image" icon={<FaImage className="text-violet-500" />}>
                                     <div className="flex flex-col sm:flex-row items-start gap-5">
                                         <div className="w-32 h-32 bg-slate-100 rounded-2xl overflow-hidden border-2 border-dashed border-slate-200 flex items-center justify-center relative flex-shrink-0">
-                                            {data.about.aboutImage ? <img src={data.about.aboutImage} alt="About" className="w-full h-full object-cover" /> : <FaImage className="text-3xl text-slate-300" />}
+                                            {data.about.aboutImage ? <Image src={data.about.aboutImage} alt="About" fill className="object-cover" /> : <FaImage className="text-3xl text-slate-300" />}
                                             {uploading === 'about.aboutImage' && <div className="absolute inset-0 bg-white/80 flex items-center justify-center"><FaSpinner className="animate-spin text-violet-500 text-xl" /></div>}
                                         </div>
                                         <div>
@@ -456,7 +457,7 @@ const AdminDashboard = () => {
                                                 <div className="space-y-3">
                                                     <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider">Image</label>
                                                     <div className="aspect-video bg-slate-100 rounded-xl overflow-hidden relative border-2 border-dashed border-slate-200">
-                                                        {proj.image ? <img src={proj.image} alt={proj.title} className="w-full h-full object-cover" /> :
+                                                        {proj.image ? <Image src={proj.image} alt={proj.title} fill className="object-cover" /> :
                                                             <div className="w-full h-full flex items-center justify-center text-slate-300"><FaImage size={24} /></div>}
                                                         {uploading === `projects.${idx}.image` && <div className="absolute inset-0 bg-white/80 flex items-center justify-center"><FaSpinner className="animate-spin text-violet-500" /></div>}
                                                     </div>
