@@ -175,7 +175,11 @@ const AdminDashboard = () => {
         setSaving(true);
         try {
             await fetch('/api/portfolio', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-            setToast({ message: 'All changes saved successfully!', type: 'success' });
+            setToast({ message: 'All changes saved successfully! Refreshing...', type: 'success' });
+            // Small delay to show toast then reload to show fresh data
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
         } catch { setToast({ message: 'Failed to save changes.', type: 'error' }); }
         finally { setSaving(false); }
     };
@@ -304,12 +308,12 @@ const AdminDashboard = () => {
                     <div className="max-w-5xl mx-auto">
 
                         {/* ═══ HERO TAB ═══ */}
-                        {activeTab === 'hero' && (
+                        {activeTab === 'hero' && data?.hero && (
                             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
                                 <Card title="Hero Image" icon={<FaImage className="text-violet-500" />}>
                                     <div className="flex flex-col sm:flex-row items-start gap-5">
                                         <div className="w-32 h-32 bg-slate-100 rounded-2xl overflow-hidden border-2 border-dashed border-slate-200 flex items-center justify-center relative flex-shrink-0">
-                                            {data.hero.heroImage ? <Image src={data.hero.heroImage} alt="Hero" fill className="object-cover" /> : <FaImage className="text-3xl text-slate-300" />}
+                                            {data.hero?.heroImage ? <Image src={data.hero.heroImage} alt="Hero" fill className="object-cover" /> : <FaImage className="text-3xl text-slate-300" />}
                                             {uploading === 'hero.heroImage' && <div className="absolute inset-0 bg-white/80 flex items-center justify-center"><FaSpinner className="animate-spin text-violet-500 text-xl" /></div>}
                                         </div>
                                         <div>
@@ -321,23 +325,24 @@ const AdminDashboard = () => {
                                         </div>
                                     </div>
                                 </Card>
+                                {/* Personal Info and other Hero cards check ... */}
 
                                 <Card title="Personal Info" icon={<FaUser className="text-violet-500" />}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                        <InputField label="First Name" value={data.hero.firstName} onChange={(e: any) => handleChange('hero.firstName', e.target.value)} />
-                                        <InputField label="Last Name" value={data.hero.lastName} onChange={(e: any) => handleChange('hero.lastName', e.target.value)} />
+                                        <InputField label="First Name" value={data.hero?.firstName || ''} onChange={(e: any) => handleChange('hero.firstName', e.target.value)} />
+                                        <InputField label="Last Name" value={data.hero?.lastName || ''} onChange={(e: any) => handleChange('hero.lastName', e.target.value)} />
                                         <div className="md:col-span-2">
-                                            <InputField label="Title / Designation" value={data.hero.title} onChange={(e: any) => handleChange('hero.title', e.target.value)} />
+                                            <InputField label="Title / Designation" value={data.hero?.title || ''} onChange={(e: any) => handleChange('hero.title', e.target.value)} />
                                         </div>
                                     </div>
                                 </Card>
 
                                 <Card title="Hero Stats" icon={<FaMagic className="text-violet-500" />}>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                        <InputField label="Stat 1 Value" value={data.hero.stat1Value || ''} onChange={(e: any) => handleChange('hero.stat1Value', e.target.value)} placeholder="05+" />
-                                        <InputField label="Stat 1 Label" value={data.hero.stat1Label || ''} onChange={(e: any) => handleChange('hero.stat1Label', e.target.value)} placeholder="Frameworks" />
-                                        <InputField label="Stat 2 Value" value={data.hero.stat2Value || ''} onChange={(e: any) => handleChange('hero.stat2Value', e.target.value)} placeholder="100%" />
-                                        <InputField label="Stat 2 Label" value={data.hero.stat2Label || ''} onChange={(e: any) => handleChange('hero.stat2Label', e.target.value)} placeholder="Coverage" />
+                                        <InputField label="Stat 1 Value" value={data.hero?.stat1Value || ''} onChange={(e: any) => handleChange('hero.stat1Value', e.target.value)} placeholder="05+" />
+                                        <InputField label="Stat 1 Label" value={data.hero?.stat1Label || ''} onChange={(e: any) => handleChange('hero.stat1Label', e.target.value)} placeholder="Frameworks" />
+                                        <InputField label="Stat 2 Value" value={data.hero?.stat2Value || ''} onChange={(e: any) => handleChange('hero.stat2Value', e.target.value)} placeholder="100%" />
+                                        <InputField label="Stat 2 Label" value={data.hero?.stat2Label || ''} onChange={(e: any) => handleChange('hero.stat2Label', e.target.value)} placeholder="Coverage" />
                                     </div>
                                 </Card>
 
@@ -352,7 +357,7 @@ const AdminDashboard = () => {
                                             { value: 'none', label: 'Off' }
                                         ].map(opt => (
                                             <button key={opt.value} onClick={() => handleChange('hero.heroAnimation', opt.value)}
-                                                className={`px-4 py-3 rounded-xl text-sm font-bold border-2 transition-all ${(data.hero.heroAnimation || 'rotate') === opt.value
+                                                className={`px-4 py-3 rounded-xl text-sm font-bold border-2 transition-all ${(data.hero?.heroAnimation || 'rotate') === opt.value
                                                     ? 'bg-violet-50 border-violet-500 text-violet-700' : 'bg-white border-slate-200 text-slate-500 hover:border-slate-300'}`}>
                                                 {opt.label}
                                             </button>
@@ -362,7 +367,7 @@ const AdminDashboard = () => {
 
                                 <Card title="CV / Resume" icon={<FaUpload className="text-violet-500" />}>
                                     <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-                                        <span className="text-sm text-slate-400 truncate max-w-xs">{data.hero.cvPdf || 'No CV uploaded'}</span>
+                                        <span className="text-sm text-slate-400 truncate max-w-xs">{data.hero?.cvPdf || 'No CV uploaded'}</span>
                                         <label className="inline-flex items-center gap-2 px-5 py-2.5 bg-violet-50 text-violet-700 rounded-xl font-semibold text-sm cursor-pointer hover:bg-violet-100 transition-colors border border-violet-200 whitespace-nowrap">
                                             <FaUpload /> Upload CV (PDF)
                                             <input type="file" className="hidden" onChange={(e) => handleFileUpload(e, 'hero.cvPdf')} accept=".pdf" />
@@ -372,23 +377,23 @@ const AdminDashboard = () => {
 
                                 <Card title="Typewriter Sentences" icon={<span>✨</span>}>
                                     <p className="text-xs text-slate-400 mb-3">Comma-separated sentences for the typewriter effect.</p>
-                                    <TextArea label="" value={data.hero.typewriterSentences.join(', ')} onChange={(e: any) => handleChange('hero.typewriterSentences', e.target.value.split(',').map((s: string) => s.trim()))} rows={3} />
+                                    <TextArea label="" value={data.hero?.typewriterSentences?.join(', ') || ''} onChange={(e: any) => handleChange('hero.typewriterSentences', e.target.value.split(',').map((s: string) => s.trim()))} rows={3} />
                                 </Card>
 
                                 <Card title="QA Words (Rotating Label)" icon={<span>🔄</span>}>
                                     <p className="text-xs text-slate-400 mb-3">Comma-separated words that rotate under the hero image.</p>
-                                    <TextArea label="" value={data.hero.qaWords.join(', ')} onChange={(e: any) => handleChange('hero.qaWords', e.target.value.split(',').map((s: string) => s.trim()))} rows={3} />
+                                    <TextArea label="" value={data.hero?.qaWords?.join(', ') || ''} onChange={(e: any) => handleChange('hero.qaWords', e.target.value.split(',').map((s: string) => s.trim()))} rows={3} />
                                 </Card>
                             </motion.div>
                         )}
 
                         {/* ═══ ABOUT TAB ═══ */}
-                        {activeTab === 'about' && (
+                        {activeTab === 'about' && data?.about && (
                             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
                                 <Card title="About Image" icon={<FaImage className="text-violet-500" />}>
                                     <div className="flex flex-col sm:flex-row items-start gap-5">
                                         <div className="w-32 h-32 bg-slate-100 rounded-2xl overflow-hidden border-2 border-dashed border-slate-200 flex items-center justify-center relative flex-shrink-0">
-                                            {data.about.aboutImage ? <Image src={data.about.aboutImage} alt="About" fill className="object-cover" /> : <FaImage className="text-3xl text-slate-300" />}
+                                            {data.about?.aboutImage ? <Image src={data.about.aboutImage} alt="About" fill className="object-cover" /> : <FaImage className="text-3xl text-slate-300" />}
                                             {uploading === 'about.aboutImage' && <div className="absolute inset-0 bg-white/80 flex items-center justify-center"><FaSpinner className="animate-spin text-violet-500 text-xl" /></div>}
                                         </div>
                                         <div>
@@ -403,19 +408,19 @@ const AdminDashboard = () => {
 
                                 <Card title="About Content" icon={<FaInfoCircle className="text-violet-500" />}>
                                     <div className="space-y-5">
-                                        <InputField label="Badge Title" value={data.about.subheading} onChange={(e: any) => handleChange('about.subheading', e.target.value)} />
-                                        <InputField label="Main Heading" value={data.about.heading} onChange={(e: any) => handleChange('about.heading', e.target.value)} />
+                                        <InputField label="Badge Title" value={data.about?.subheading || ''} onChange={(e: any) => handleChange('about.subheading', e.target.value)} />
+                                        <InputField label="Main Heading" value={data.about?.heading || ''} onChange={(e: any) => handleChange('about.heading', e.target.value)} />
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                            <InputField label="Accuracy %" value={data.about.stats.accuracy} onChange={(e: any) => handleChange('about.stats.accuracy', e.target.value)} />
-                                            <InputField label="Years Experience" value={data.about.stats.experienceYears} onChange={(e: any) => handleChange('about.stats.experienceYears', e.target.value)} />
+                                            <InputField label="Accuracy %" value={data.about?.stats?.accuracy || ''} onChange={(e: any) => handleChange('about.stats.accuracy', e.target.value)} />
+                                            <InputField label="Years Experience" value={data.about?.stats?.experienceYears || ''} onChange={(e: any) => handleChange('about.stats.experienceYears', e.target.value)} />
                                         </div>
-                                        <TextArea label="Description" value={data.about.description} onChange={(e: any) => handleChange('about.description', e.target.value)} />
+                                        <TextArea label="Description" value={data.about?.description || ''} onChange={(e: any) => handleChange('about.description', e.target.value)} />
                                     </div>
                                 </Card>
 
                                 <Card title="Services / Features" icon={<span>🧩</span>}>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        {data.about.features.map((feat, idx) => (
+                                        {(data.about?.features || []).map((feat: any, idx: number) => (
                                             <div key={idx} className="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
                                                 <input value={feat.title} onChange={(e) => { const f = [...data.about.features]; f[idx] = { ...f[idx], title: e.target.value }; handleChange('about.features', f); }}
                                                     className="w-full bg-white border-2 border-slate-200 rounded-lg px-3 py-2 text-sm font-bold text-slate-800 focus:border-violet-500 outline-none" placeholder="Title" />

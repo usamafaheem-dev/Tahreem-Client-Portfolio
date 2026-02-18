@@ -6,6 +6,8 @@ import path from 'path';
 const COLLECTION_NAME = 'portfolio';
 const DATABASE_NAME = 'portfolio_db';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
     try {
         if (!process.env.MONGODB_URI) {
@@ -35,7 +37,11 @@ export async function GET() {
             }
         }
 
-        return NextResponse.json(data);
+        return NextResponse.json(data, {
+            headers: {
+                'Cache-Control': 'no-store, max-age=0',
+            }
+        });
     } catch (error: any) {
         console.error("Error handling portfolio GET:", error);
         return NextResponse.json({
