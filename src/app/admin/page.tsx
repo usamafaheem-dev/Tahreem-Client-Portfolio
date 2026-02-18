@@ -233,7 +233,7 @@ const AdminDashboard = () => {
         { id: 'about', label: 'About', icon: <FaInfoCircle /> },
         { id: 'projects', label: 'Projects', icon: <FaProjectDiagram /> },
         { id: 'experience', label: 'Experience', icon: <FaBriefcase /> },
-        { id: 'navbar', label: 'Navbar', icon: <FaImage /> },
+        { id: 'header_logo', label: 'Header Logo', icon: <FaImage /> },
         { id: 'contact', label: 'Contact', icon: <FaAddressBook /> },
         { id: 'footer', label: 'Footer', icon: <FaGlobe /> },
         { id: 'settings', label: 'Settings', icon: <FaCog /> },
@@ -552,10 +552,10 @@ const AdminDashboard = () => {
                             </motion.div>
                         )}
 
-                        {/* ═══ NAVBAR TAB ═══ */}
-                        {activeTab === 'navbar' && (
+                        {/* ═══ HEADER LOGO TAB ═══ */}
+                        {activeTab === 'header_logo' && (
                             <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6">
-                                <Card title="Logo Configuration" icon={<FaImage className="text-violet-500" />}>
+                                <Card title="Header Logo Configuration" icon={<FaImage className="text-violet-500" />}>
                                     <div className="space-y-6">
                                         <div>
                                             <label className="block text-xs font-bold text-slate-500 mb-3 uppercase tracking-wider">Logo Type</label>
@@ -579,9 +579,10 @@ const AdminDashboard = () => {
                                                 <div className="flex items-center gap-5 p-4 bg-slate-50 rounded-2xl border-2 border-dashed border-slate-200">
                                                     <div className="w-20 h-20 relative bg-white rounded-xl overflow-hidden border border-slate-100 flex items-center justify-center">
                                                         {data?.navbar?.logoImage ? <Image src={data.navbar.logoImage} alt="Logo" fill className="object-contain" /> : <FaImage className="text-slate-300 text-2xl" />}
+                                                        {uploading === 'navbar.logoImage' && <div className="absolute inset-0 bg-white/80 flex items-center justify-center"><FaSpinner className="animate-spin text-violet-500" /></div>}
                                                     </div>
                                                     <label className="px-5 py-2.5 bg-white text-slate-700 border border-slate-200 rounded-xl text-sm font-bold cursor-pointer hover:bg-slate-50 transition-all">
-                                                        {uploading === 'navbar.logoImage' ? <FaSpinner className="animate-spin" /> : 'Upload Logo'}
+                                                        <FaUpload /> Upload Logo
                                                         <input type="file" className="hidden" onChange={(e) => handleFileUpload(e, 'navbar.logoImage')} accept="image/*" />
                                                     </label>
                                                 </div>
