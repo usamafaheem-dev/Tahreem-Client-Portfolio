@@ -10,8 +10,10 @@ import {
   FaLocationDot,
   FaPaperPlane
 } from 'react-icons/fa6';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const Contact = () => {
+  const { data } = usePortfolio();
   const [formData, setFormData] = React.useState({
     name: '',
     email: '',
@@ -35,8 +37,8 @@ const Contact = () => {
     const { name, email, message } = formData;
 
     // Construct WhatsApp Message
-    const whatsappNumber = "923477734372";
-    const text = `*Hi Tehreem, I need assistance with SQA / Testing* %0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Message:* ${message}`;
+    const whatsappNumber = data?.contact?.whatsapp || "923477734372";
+    const text = `*Hi, I need assistance with SQA / Testing* %0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Message:* ${message}`;
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
 
     window.open(whatsappUrl, '_blank');
@@ -94,19 +96,19 @@ const Contact = () => {
                     {
                       icon: <FaEnvelope />,
                       title: "Email",
-                      val: "tehreemarif308@gmail.com",
+                      val: data?.contact?.email || "tehreemarif308@gmail.com",
                       gradient: "from-violet-500 to-indigo-500"
                     },
                     {
                       icon: <FaPhone />,
                       title: "Phone",
-                      val: "+92 347 7734372",
+                      val: data?.contact?.phone || "+92 347 7734372",
                       gradient: "from-fuchsia-500 to-pink-500"
                     },
                     {
                       icon: <FaLocationDot />,
                       title: "Location",
-                      val: "Punjab, Pakistan",
+                      val: data?.contact?.location || "Punjab, Pakistan",
                       gradient: "from-blue-500 to-cyan-500"
                     }
                   ].map((item, i) => (
@@ -136,8 +138,8 @@ const Contact = () => {
                 <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-6 md:mb-8">Follow My Journey</p>
                 <div className="flex gap-3 md:gap-4">
                   {[
-                    { icon: <FaLinkedin />, color: "hover:bg-[#0077b5]", href: "https://www.linkedin.com/in/tehreemarif/" },
-                    { icon: <FaGithub />, color: "hover:bg-[#333]", href: "https://github.com/techtehr" }
+                    { icon: <FaLinkedin />, color: "hover:bg-[#0077b5]", href: data?.contact?.linkedin || "https://www.linkedin.com/in/tehreemarif/" },
+                    { icon: <FaGithub />, color: "hover:bg-[#333]", href: data?.contact?.github || "https://github.com/techtehr" }
                   ].map((social, i) => (
                     <a
                       key={i}

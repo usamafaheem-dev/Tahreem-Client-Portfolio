@@ -1,14 +1,34 @@
-"use client";
+'use client';
+
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const AboutQA = () => {
+    const { data } = usePortfolio();
     const sectionRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: sectionRef,
         offset: ["start end", "end start"]
     });
+
+    const aboutData = data?.about || {
+        heading: "Ensuring Digital Perfection Through Rigorous Testing.",
+        subheading: "Who I Am",
+        description: "As a dedicated SQA Engineer, I bridge the gap between complex development and seamless user experience. My mission is to deliver bulletproof software solutions.",
+        aboutImage: "/sqa_engineer_option_1_1771337305527-removebg-preview.png",
+        stats: {
+            accuracy: "99",
+            experienceYears: "01"
+        },
+        features: [
+            { title: "Test Automation", desc: "Selenium, Cypress, Playwright" },
+            { title: "API Testing", desc: "Postman, RestAssured" },
+            { title: "Performance", desc: "JMeter, k6" },
+            { title: "Cloud Testing", desc: "AWS, Docker, Jenkins" }
+        ]
+    };
 
     const y1 = useTransform(scrollYProgress, [0, 1], [0, -50]);
     const y2 = useTransform(scrollYProgress, [0, 1], [0, 50]);
@@ -70,7 +90,7 @@ const AboutQA = () => {
 
                             <div className="relative aspect-square w-[240px] md:w-[380px] flex items-center justify-center z-10 p-4">
                                 <img
-                                    src="/sqa_engineer_option_1_1771337305527-removebg-preview.png"
+                                    src={aboutData.aboutImage}
                                     alt="Tehreem - SQA Engineer"
                                     className="w-full h-full object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.1)] transition-transform duration-500 group-hover:scale-105"
                                 />
@@ -82,7 +102,7 @@ const AboutQA = () => {
                                 className="absolute top-10 -left-6 md:-left-6 w-14 h-14 md:w-24 md:h-24 bg-white dark:bg-slate-900 border-2 border-fuchsia-500/50 rounded-2xl z-30 flex items-center justify-center shadow-[0_10px_25px_rgba(217,70,239,0.2)]"
                             >
                                 <div className="text-center px-1">
-                                    <span className="block text-base md:text-xl font-black text-fuchsia-600">99%</span>
+                                    <span className="block text-base md:text-xl font-black text-fuchsia-600">{aboutData.stats.accuracy}%</span>
                                     <span className="text-[5px] md:text-[7px] font-bold uppercase tracking-[0.2em] text-fuchsia-700 dark:text-fuchsia-400">Accuracy</span>
                                 </div>
                             </motion.div>
@@ -96,7 +116,7 @@ const AboutQA = () => {
                                 <div className="flex items-center justify-center gap-2 md:gap-2.5">
                                     <div className="relative">
                                         <div className="w-7 h-7 md:w-10 md:h-10 rounded-full bg-fuchsia-600 flex items-center justify-center text-white shadow-lg shadow-fuchsia-500/40">
-                                            <span className="text-xs md:text-base font-black font-outfit">01+</span>
+                                            <span className="text-xs md:text-base font-black font-outfit">{aboutData.stats.experienceYears}+</span>
                                         </div>
                                         <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full animate-pulse" />
                                     </div>
@@ -123,27 +143,24 @@ const AboutQA = () => {
                         <div className="space-y-3 md:space-y-4">
                             <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full bg-violet-600/10 border border-violet-600/20">
                                 <span className="w-1.5 h-1.5 rounded-full bg-violet-600 animate-ping" />
-                                <span className="text-violet-600 font-black uppercase tracking-[0.2em] text-[9px]">Who I Am</span>
+                                <span className="text-violet-600 font-black uppercase tracking-[0.2em] text-[9px]">{aboutData.subheading}</span>
                             </div>
 
                             <h2 className="text-2xl md:text-4xl lg:text-5xl font-black font-outfit text-slate-900 dark:text-white leading-[1.2] tracking-tight text-balance">
-                                Ensuring <br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600">Digital Perfection</span> <br />
-                                Through Rigorous Testing.
+                                {aboutData.heading.split(' ').map((word, i) => (
+                                    <span key={i} className={word === 'Digital' || word === 'Perfection' ? 'text-transparent bg-clip-text bg-gradient-to-r from-violet-600 to-fuchsia-600' : ''}>
+                                        {word}{' '}
+                                    </span>
+                                ))}
                             </h2>
 
                             <p className="text-xs md:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-medium max-w-xl">
-                                As a dedicated SQA Engineer, I bridge the gap between complex development and seamless user experience. My mission is to deliver bulletproof software solutions.
+                                {aboutData.description}
                             </p>
                         </div>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            {[
-                                { title: "Test Automation", desc: "Selenium, Cypress, Playwright" },
-                                { title: "API Testing", desc: "Postman, RestAssured" },
-                                { title: "Performance", desc: "JMeter, k6" },
-                                { title: "Cloud Testing", desc: "AWS, Docker, Jenkins" }
-                            ].map((item, i) => (
+                            {aboutData.features.map((item, i) => (
                                 <motion.div
                                     key={i}
                                     whileHover={{ y: -3 }}
@@ -175,4 +192,3 @@ const AboutQA = () => {
 };
 
 export default AboutQA;
-

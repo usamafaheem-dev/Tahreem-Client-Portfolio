@@ -1,0 +1,227 @@
+{
+  "hero": {
+    "firstName": "Tehreem",
+    "lastName": "Arif",
+    "title": "SQA SPECIALIST // AUTOMATION",
+    "qaWords": [
+      "Quality Sentinel",
+      "Bug Hunter",
+      "Test Architect",
+      "Automation Pro",
+      "Code Guardian"
+    ],
+    "typewriterSentences": [
+      "QA Specialist",
+      "Automation Expert",
+      "Bug Hunter",
+      "Test Architect",
+      "Code Guardian"
+    ],
+    "cvPdf": "/TehreemQ.pdf",
+    "heroImage": "https://res.cloudinary.com/dzpyykt7s/image/upload/v1771405007/k8fvfrxpmqzadcffog63.png",
+    "heroAnimation": "rotate",
+    "stat1Value": "05+",
+    "stat1Label": "Frameworks",
+    "stat2Value": "100%",
+    "stat2Label": "Coverage"
+  },
+  "about": {
+    "heading": "Ensuring Digital Perfection Through Rigorous Testing.",
+    "subheading": "Who I Am",
+    "description": "As a dedicated SQA Engineer, I bridge the gap between complex development and seamless user experience. My mission is to deliver bulletproof software solutions.",
+    "aboutImage": "/sqa_engineer_option_1_1771337305527-removebg-preview.png",
+    "stats": {
+      "accuracy": "99",
+      "experienceYears": "01"
+    },
+    "features": [
+      {
+        "title": "Test Automation",
+        "desc": "Selenium, Cypress, Playwright"
+      },
+      {
+        "title": "API Testing",
+        "desc": "Postman, RestAssured"
+      },
+      {
+        "title": "Performance",
+        "desc": "JMeter, k6"
+      },
+      {
+        "title": "Cloud Testing",
+        "desc": "AWS, Docker, Jenkins"
+      }
+    ]
+  },
+  "contact": {
+    "email": "tehreemarif308@gmail.com",
+    "phone": "+92 347 7734372",
+    "whatsapp": "923477734372",
+    "location": "Punjab, Pakistan",
+    "linkedin": "https://www.linkedin.com/in/tehreemarif/",
+    "github": "https://github.com/techtehr"
+  },
+  "experience": [
+    {
+      "id": 1,
+      "role": "Manual SQA",
+      "company": "vertexAi",
+      "date": "May 2025 - Present",
+      "description": "Specializing in manual software quality assurance, ensuring product excellence through meticulous test execution, bug reporting, and regression testing.",
+      "type": "work"
+    },
+    {
+      "id": 2,
+      "role": "QA Intern",
+      "company": "vertexAi",
+      "date": "Feb 2025 - Apr 2025",
+      "description": "Gained hands-on experience in software testing life cycle (STLC), assisting in test case development, and performing initial rounds of testing.",
+      "type": "work"
+    },
+    {
+      "id": 3,
+      "role": "BS Software Engineering",
+      "company": "GC University Faisalabad",
+      "date": "2021 - 2025",
+      "description": "Focused on software development principles, quality assurance methodologies, and software human lifecycle management.",
+      "type": "education"
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "Dr. Adler Bot",
+      "link": "https://dradlerbot.vertexaitec.com/",
+      "type": "Web Application",
+      "image": "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1400&auto=format&fit=crop",
+      "description": "AI-powered medical assistant bot designed to provide preliminary health advice.",
+      "testing": [
+        "Functional Testing",
+        "Chatbot Logic Validation",
+        "UI Responsiveness",
+        "API Integration Testing"
+      ],
+      "tools": [
+        "Selenium",
+        "Postman",
+        "Jira"
+      ],
+      "bugs": "Identified critical conversation loop errors and response latency issues.",
+      "color": "blue"
+    },
+    {
+      "id": 2,
+      "title": "LipLock",
+      "link": "https://liplock.vercel.app/",
+      "type": "Web Application",
+      "image": "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1400&auto=format&fit=crop",
+      "description": "E-commerce platform for fast-fashion cosmetics.",
+      "testing": [
+        "E-commerce Flow Validation",
+        "Payment Gateway Testing",
+        "Cross-Browser Compatibility"
+      ],
+      "tools": [
+        "Cypress",
+        "Trello",
+        "Chrome DevTools"
+      ],
+      "bugs": "Fixed cart abandonment triggers and mobile checkout overlapping issues.",
+      "color": "pink"
+    },
+    {
+      "id": 3,
+      "title": "Redfin Omega",
+      "link": "https://redfin-omega.vercel.app/",
+      "type": "Web Application",
+      "image": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1400&auto=format&fit=crop",
+      "description": "Real estate innovation platform for property tracking.",
+      "testing": [
+        "Search Filter Logic",
+        "User Authentication",
+        "Data Consistency Checks"
+      ],
+      "tools": [
+        "Manual Testing",
+        "SQL",
+        "Bugzilla"
+      ],
+      "bugs": "Resolved search indexing failures and login session timeouts.",
+      "color": "red"
+    },
+    {
+      "id": 4,
+      "title": "Kyakh Web",
+      "link": "https://kyakh-web.vercel.app/",
+      "type": "Web Application",
+      "image": "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1400&auto=format&fit=crop",
+      "description": "Social networking platform for niche communities.",
+      "testing": [
+        "Feed Algorithm Testing",
+        "Real-time Notification Checks",
+        "Profile Management"
+      ],
+      "tools": [
+        "JMeter",
+        "Selenium",
+        "Slack"
+      ],
+      "bugs": "Reported high-severity socket connection drops during peak load.",
+      "color": "purple"
+    },
+    {
+      "id": 5,
+      "title": "Cup",
+      "link": "#",
+      "type": "Mobile Application",
+      "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1400&auto=format&fit=crop",
+      "description": "Lifestyle tracking app for daily hydration and health habits.",
+      "testing": [
+        "Mobile Usability",
+        "Battery Usage Testing",
+        "Push Notifications"
+      ],
+      "tools": [
+        "Appium",
+        "Xcode",
+        "Android Studio"
+      ],
+      "bugs": "Addressed background data sync failures on iOS 15+.",
+      "color": "orange"
+    },
+    {
+      "id": 6,
+      "title": "Tiptok",
+      "link": "#",
+      "type": "Mobile Application",
+      "image": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1400&auto=format&fit=crop",
+      "description": "Short-form video sharing platform with social features.",
+      "testing": [
+        "Video Playback Performance",
+        "Social Sharing Integration",
+        "Gestures & Navigation"
+      ],
+      "tools": [
+        "Appium",
+        "Charles Proxy",
+        "TestFlight"
+      ],
+      "bugs": "Optimized buffer rates and fixed orientation crash bugs.",
+      "color": "emerald"
+    }
+  ],
+  "footer": {
+    "brandName": "Tehreem",
+    "brandLastName": "Arif",
+    "tagline": "Elevating software standards through meticulous testing and innovative automation solutions. Quality is not an act, it's a habit.",
+    "copyright": "Tehreem Arif",
+    "designCredit": "Designed for Excellence & Precision."
+  },
+  "settings": {
+    "password": "tehreem2025",
+    "primaryColor": "#7c3aed",
+    "accentColor": "#d946ef",
+    "fontColor": "#1e293b",
+    "heroAnimation": "rotate"
+  }
+}

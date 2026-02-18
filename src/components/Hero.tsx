@@ -4,11 +4,28 @@ import React, { useRef, useEffect, useState } from 'react';
 import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { SiSelenium, SiCypress, SiPostman, SiAppium, SiJavascript, SiPython } from 'react-icons/si';
 import { FaChevronRight, FaRocket, FaShield, FaMicroscope, FaGithub, FaBug } from 'react-icons/fa6';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 
 const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollY } = useScroll();
+  const { data } = usePortfolio();
+
+  const heroData = data?.hero || {
+    firstName: "Tehreem",
+    lastName: "Arif",
+    title: "SQA SPECIALIST // AUTOMATION",
+    qaWords: ["Quality Sentinel", "Bug Hunter", "Test Architect", "Automation Pro", "Code Guardian"],
+    typewriterSentences: ["QA Specialist", "Automation Expert", "Bug Hunter", "Test Architect", "Code Guardian"],
+    cvPdf: "/TehreemQ.pdf",
+    heroImage: "/robotic_qa_assistant_3d_1771351642753-removebg-preview.png",
+    heroAnimation: "rotate",
+    stat1Value: "05+",
+    stat1Label: "Frameworks",
+    stat2Value: "100%",
+    stat2Label: "Coverage"
+  };
 
   // High-Precision Mouse Tracking for 3D depth
   const mouseX = useMotionValue(0);
@@ -33,7 +50,7 @@ const Hero = () => {
   }, [mouseX, mouseY]);
 
   // Dynamic Text Rotator for the Fancy Label
-  const qaWords = ["Quality Sentinel", "Bug Hunter", "Test Architect", "Automation Pro", "Code Guardian"];
+  const qaWords = heroData.qaWords;
   const [wordIndex, setWordIndex] = useState(0);
 
   useEffect(() => {
@@ -44,13 +61,8 @@ const Hero = () => {
   }, []);
 
   // Typewriter effect state
-  const sentences = [
-    "QA Specialist",
-    "Automation Expert",
-    "Bug Hunter",
-    "Test Architect",
-    "Code Guardian"
-  ];
+  // Typewriter effect state
+  const sentences = heroData.typewriterSentences;
   const [displayText, setDisplayText] = useState("");
   const [sentenceIndex, setSentenceIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
@@ -138,8 +150,8 @@ const Hero = () => {
             >
               <span className="flex h-2 w-2 rounded-full bg-violet-600 animate-pulse" />
               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-violet-700 dark:text-violet-300">
-                <span className="hidden sm:inline">SQA SPECIALIST // AUTOMATION</span>
-                <span className="sm:hidden">SQA SPECIALIST</span>
+                <span className="hidden sm:inline">{heroData.title}</span>
+                <span className="sm:hidden">{heroData.title.split('//')[0]}</span>
               </span>
             </motion.div>
 
@@ -151,7 +163,7 @@ const Hero = () => {
                   transition={{ delay: 0.4 }}
                   className="block text-slate-900 dark:text-white"
                 >
-                  Tehreem
+                  {heroData.firstName}
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, y: 10 }}
@@ -159,7 +171,7 @@ const Hero = () => {
                   transition={{ delay: 0.6 }}
                   className="text-transparent bg-clip-text bg-gradient-to-r from-violet-600 via-fuchsia-500 to-violet-400"
                 >
-                  Arif<span className="text-violet-600">.</span>
+                  {heroData.lastName}<span className="text-violet-600">.</span>
                 </motion.span>
               </h1>
 
@@ -201,7 +213,7 @@ const Hero = () => {
               </motion.a>
 
               <motion.a
-                href="/TehreemQ.pdf"
+                href={heroData.cvPdf}
                 target="_blank"
                 whileHover={{ scale: 1.05, translateY: -2 }}
                 whileTap={{ scale: 0.95 }}
@@ -212,12 +224,12 @@ const Hero = () => {
 
               <div className="flex gap-10 border-l border-slate-200 dark:border-white/10 pl-8">
                 <div className="flex flex-col">
-                  <span className="text-3xl font-black text-slate-900 dark:text-white leading-none">05+</span>
-                  <span className="text-[8px] font-black uppercase tracking-widest text-slate-500">Frameworks</span>
+                  <span className="text-3xl font-black text-slate-900 dark:text-white leading-none">{heroData.stat1Value || '05+'}</span>
+                  <span className="text-[8px] font-black uppercase tracking-widest text-slate-500">{heroData.stat1Label || 'Frameworks'}</span>
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-3xl font-black text-slate-900 dark:text-white leading-none">100%</span>
-                  <span className="text-[8px] font-black uppercase tracking-widest text-slate-500">Coverage</span>
+                  <span className="text-3xl font-black text-slate-900 dark:text-white leading-none">{heroData.stat2Value || '100%'}</span>
+                  <span className="text-[8px] font-black uppercase tracking-widest text-slate-500">{heroData.stat2Label || 'Coverage'}</span>
                 </div>
               </div>
             </div>
@@ -251,7 +263,7 @@ const Hero = () => {
                   className="relative z-30 w-full h-auto flex items-center justify-center -mt-6"
                 >
                   <img
-                    src="/robotic_qa_assistant_3d_1771351642753-removebg-preview.png"
+                    src={heroData.heroImage}
                     alt="QA AI Assistant"
                     className="w-[105%] h-auto object-contain group-hover:scale-105 transition-transform duration-700"
                   />
@@ -303,36 +315,39 @@ const Hero = () => {
                 </motion.div>
               </motion.div>
 
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-[-15%] sm:inset-[-5%] pointer-events-none z-50 scale-75 sm:scale-100"
-              >
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-violet-600 -rotate-12 transition-transform hover:scale-110">
-                  <SiSelenium size={18} className="sm:w-[22px] sm:h-[22px]" />
-                </div>
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-emerald-500 rotate-12 transition-transform hover:scale-110">
-                  <SiCypress size={18} className="sm:w-[22px] sm:h-[22px]" />
-                </div>
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-orange-500 rotate-45 transition-transform hover:scale-110">
-                  <SiPostman size={18} className="sm:w-[22px] sm:h-[22px]" />
-                </div>
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-rose-500 -rotate-45 transition-transform hover:scale-110">
-                  <SiAppium size={18} className="sm:w-[22px] sm:h-[22px]" />
-                </div>
-                <div className="absolute top-[15%] left-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-blue-500 rotate-12 transition-transform hover:scale-110">
-                  <SiJavascript size={16} className="sm:w-[20px] sm:h-[20px]" />
-                </div>
-                <div className="absolute bottom-[15%] right-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-yellow-500 -rotate-12 transition-transform hover:scale-110">
-                  <SiPython size={16} className="sm:w-[20px] sm:h-[20px]" />
-                </div>
-                <div className="absolute top-[15%] right-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-slate-700 dark:text-white rotate-45 transition-transform hover:scale-110">
-                  <FaGithub size={16} className="sm:w-[20px] sm:h-[20px]" />
-                </div>
-                <div className="absolute bottom-[15%] left-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-red-500 -rotate-45 transition-transform hover:scale-110">
-                  <FaBug size={16} className="sm:w-[20px] sm:h-[20px]" />
-                </div>
-              </motion.div>
+              {/* Rotating Icons Ring - Configurable animation */}
+              {heroData.heroAnimation !== 'none' && (
+                <motion.div
+                  animate={{ rotate: heroData.heroAnimation === 'reverse' ? -360 : 360 }}
+                  transition={{ duration: heroData.heroAnimation === 'fast' ? 15 : heroData.heroAnimation === 'slow' ? 60 : 30, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-[-15%] sm:inset-[-5%] pointer-events-none z-50 scale-75 sm:scale-100"
+                >
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-violet-600 -rotate-12 transition-transform hover:scale-110">
+                    <SiSelenium size={18} className="sm:w-[22px] sm:h-[22px]" />
+                  </div>
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-emerald-500 rotate-12 transition-transform hover:scale-110">
+                    <SiCypress size={18} className="sm:w-[22px] sm:h-[22px]" />
+                  </div>
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-orange-500 rotate-45 transition-transform hover:scale-110">
+                    <SiPostman size={18} className="sm:w-[22px] sm:h-[22px]" />
+                  </div>
+                  <div className="absolute right-0 top-1/2 -translate-y-1/2 p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-rose-500 -rotate-45 transition-transform hover:scale-110">
+                    <SiAppium size={18} className="sm:w-[22px] sm:h-[22px]" />
+                  </div>
+                  <div className="absolute top-[15%] left-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-blue-500 rotate-12 transition-transform hover:scale-110">
+                    <SiJavascript size={16} className="sm:w-[20px] sm:h-[20px]" />
+                  </div>
+                  <div className="absolute bottom-[15%] right-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-yellow-500 -rotate-12 transition-transform hover:scale-110">
+                    <SiPython size={16} className="sm:w-[20px] sm:h-[20px]" />
+                  </div>
+                  <div className="absolute top-[15%] right-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-slate-700 dark:text-white rotate-45 transition-transform hover:scale-110">
+                    <FaGithub size={16} className="sm:w-[20px] sm:h-[20px]" />
+                  </div>
+                  <div className="absolute bottom-[15%] left-[15%] p-2 sm:p-3.5 rounded-2xl bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-fuchsia-500/20 shadow-[0_0_60px_rgba(192,38,211,0.6)] text-red-500 -rotate-45 transition-transform hover:scale-110">
+                    <FaBug size={16} className="sm:w-[20px] sm:h-[20px]" />
+                  </div>
+                </motion.div>
+              )}
 
               {/* Decorative Spinning Rings around Pod */}
               <div className="absolute inset-[-10%] z-10 pointer-events-none opacity-20">

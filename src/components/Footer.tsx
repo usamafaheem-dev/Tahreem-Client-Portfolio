@@ -2,8 +2,25 @@
 
 import { motion } from "framer-motion";
 import { FaLinkedinIn, FaGithub, FaEnvelope, FaWhatsapp } from "react-icons/fa6";
+import { usePortfolio } from "@/context/PortfolioContext";
 
 export default function Footer() {
+  const { data } = usePortfolio();
+
+  const footerData = data?.footer || {
+    brandName: "Tehreem",
+    brandLastName: "Arif",
+    tagline: "Elevating software standards through meticulous testing and innovative automation solutions. Quality is not an act, it's a habit.",
+    copyright: "Tehreem Arif",
+    designCredit: "Designed for Excellence & Precision."
+  };
+
+  const contactData = data?.contact || {
+    linkedin: "https://www.linkedin.com/in/tehreemarif/",
+    github: "https://github.com/techtehr",
+    email: "tehreemarif308@gmail.com",
+    whatsapp: "923477734372"
+  };
 
   return (
     <footer className="bg-[var(--background)] pt-12 md:pt-20 pb-12 overflow-hidden relative border-t border-slate-200/50 dark:border-white/[0.05]">
@@ -21,12 +38,12 @@ export default function Footer() {
               className="mb-6"
             >
               <span className="text-2xl md:text-3xl font-black tracking-tighter font-outfit text-slate-900 dark:text-white flex items-center gap-1 justify-center md:justify-start">
-                <span className="bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">Tehreem</span>
-                <span className="opacity-80">Arif</span>
+                <span className="bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">{footerData.brandName}</span>
+                <span className="opacity-80">{footerData.brandLastName}</span>
               </span>
             </motion.div>
             <p className="text-slate-500 dark:text-slate-400 text-sm font-medium leading-relaxed">
-              Elevating software standards through meticulous testing and innovative automation solutions. Quality is not an act, it's a habit.
+              {footerData.tagline}
             </p>
           </div>
 
@@ -35,9 +52,9 @@ export default function Footer() {
             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500">Connect Globally</p>
             <div className="flex gap-4">
               {[
-                { icon: <FaLinkedinIn />, href: "https://www.linkedin.com/in/tehreemarif/", color: "hover:bg-[#0077b5]" },
-                { icon: <FaGithub />, href: "https://github.com/techtehr", color: "hover:bg-[#333]" },
-                { icon: <FaEnvelope />, href: "mailto:tehreemarif308@gmail.com", color: "hover:bg-violet-600" }
+                { icon: <FaLinkedinIn />, href: contactData.linkedin, color: "hover:bg-[#0077b5]" },
+                { icon: <FaGithub />, href: contactData.github, color: "hover:bg-[#333]" },
+                { icon: <FaEnvelope />, href: `mailto:${contactData.email}`, color: "hover:bg-violet-600" }
               ].map((social, i) => (
                 <motion.a
                   key={i}
@@ -60,8 +77,8 @@ export default function Footer() {
         {/* Copyright & Links */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 text-center md:text-left">
-            <p>&copy; {new Date().getFullYear()} Tehreem Arif. All Rights Reserved.</p>
-            <p className="mt-1 opacity-60">Designed for Excellence & Precision.</p>
+            <p>&copy; {new Date().getFullYear()} {footerData.copyright}. All Rights Reserved.</p>
+            <p className="mt-1 opacity-60">{footerData.designCredit}</p>
           </div>
 
           <div className="flex gap-8 text-[9px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500">
@@ -73,7 +90,7 @@ export default function Footer() {
 
       {/* WhatsApp Floating Button */}
       <motion.a
-        href="https://wa.me/923477734372"
+        href={`https://wa.me/${contactData.whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
         initial={{ opacity: 0, scale: 0 }}

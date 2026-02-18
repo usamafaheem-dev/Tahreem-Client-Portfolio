@@ -2,86 +2,15 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaGlobe, FaMobileAlt, FaBug, FaTools, FaExternalLinkAlt } from 'react-icons/fa';
-
-const projects = [
-    {
-        title: "Dr. Adler Bot",
-        link: "https://dradlerbot.vertexaitec.com/",
-        type: "Web Application",
-        icon: <FaGlobe />,
-        image: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1400&auto=format&fit=crop",
-        description: "AI-powered medical assistant bot designed to provide preliminary health advice.",
-        testing: ["Functional Testing", "Chatbot Logic Validation", "UI Responsiveness", "API Integration Testing"],
-        tools: ["Selenium", "Postman", "Jira"],
-        bugs: "Identified critical conversation loop errors and response latency issues.",
-        color: "blue"
-    },
-    {
-        title: "LipLock",
-        link: "https://liplock.vercel.app/",
-        type: "Web Application",
-        icon: <FaGlobe />,
-        image: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1400&auto=format&fit=crop",
-        description: "E-commerce platform for fast-fashion cosmetics.",
-        testing: ["E-commerce Flow Validation", "Payment Gateway Testing", "Cross-Browser Compatibility"],
-        tools: ["Cypress", "Trello", "Chrome DevTools"],
-        bugs: "Fixed cart abandonment triggers and mobile checkout overlapping issues.",
-        color: "pink"
-    },
-    {
-        title: "Redfin Omega",
-        link: "https://redfin-omega.vercel.app/",
-        type: "Web Application",
-        icon: <FaGlobe />,
-        image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1400&auto=format&fit=crop",
-        description: "Real estate innovation platform for property tracking.",
-        testing: ["Search Filter Logic", "User Authentication", "Data Consistency Checks"],
-        tools: ["Manual Testing", "SQL", "Bugzilla"],
-        bugs: "Resolved search indexing failures and login session timeouts.",
-        color: "red"
-    },
-    {
-        title: "Kyakh Web",
-        link: "https://kyakh-web.vercel.app/",
-        type: "Web Application",
-        icon: <FaGlobe />,
-        image: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=1400&auto=format&fit=crop",
-        description: "Social networking platform for niche communities.",
-        testing: ["Feed Algorithm Testing", "Real-time Notification Checks", "Profile Management"],
-        tools: ["JMeter", "Selenium", "Slack"],
-        bugs: "Reported high-severity socket connection drops during peak load.",
-        color: "purple"
-    },
-    {
-        title: "Cup",
-        link: "#",
-        type: "Mobile Application",
-        icon: <FaMobileAlt />,
-        image: "https://images.unsplash.com/photo-1551650975-87deedd944c3?q=80&w=1400&auto=format&fit=crop",
-        description: "Lifestyle tracking app for daily hydration and health habits.",
-        testing: ["Mobile Usability", "Battery Usage Testing", "Push Notifications"],
-        tools: ["Appium", "Xcode", "Android Studio"],
-        bugs: "Addressed background data sync failures on iOS 15+.",
-        color: "orange"
-    },
-    {
-        title: "Tiptok",
-        link: "#",
-        type: "Mobile Application",
-        icon: <FaMobileAlt />,
-        image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1400&auto=format&fit=crop",
-        description: "Short-form video sharing platform with social features.",
-        testing: ["Video Playback Performance", "Social Sharing Integration", "Gestures & Navigation"],
-        tools: ["Appium", "Charles Proxy", "TestFlight"],
-        bugs: "Optimized buffer rates and fixed orientation crash bugs.",
-        color: "emerald"
-    }
-];
+import { FaGlobe, FaMobileAlt, FaExternalLinkAlt } from 'react-icons/fa';
+import { usePortfolio } from '@/context/PortfolioContext';
 
 const ProjectsQA = () => {
+    const { data } = usePortfolio();
     const [activeFilter, setActiveFilter] = React.useState("All");
     const filters = ["All", "Web", "App"];
+
+    const projects = data?.projects || [];
 
     const filteredProjects = activeFilter === "All"
         ? projects
@@ -155,7 +84,7 @@ const ProjectsQA = () => {
                 >
                     {filteredProjects.map((project, index) => (
                         <motion.div
-                            key={project.title}
+                            key={project.id || project.title}
                             layout
                             initial={{ opacity: 0, scale: 0.95 }}
                             whileInView={{ opacity: 1, scale: 1 }}
@@ -167,7 +96,7 @@ const ProjectsQA = () => {
                                 {/* Subtle Inner Glow for Dark Mode */}
                                 <div className="absolute inset-0 bg-gradient-to-br from-violet-600/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-700 pointer-events-none" />
 
-                                {/* Image Area - Enhanced with Fallback Color */}
+                                {/* Image Area */}
                                 <div className="relative aspect-[4/3] overflow-hidden m-3 rounded-[32px] bg-slate-100 dark:bg-slate-700">
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 z-10 flex flex-col justify-end p-8">
                                         <motion.a
@@ -206,7 +135,7 @@ const ProjectsQA = () => {
                                             </div>
                                         </div>
                                         <div className="text-2xl text-violet-600/30 group-hover:text-violet-600 group-hover:rotate-12 transition-all duration-500">
-                                            {project.icon}
+                                            {project.type === "Mobile Application" ? <FaMobileAlt /> : <FaGlobe />}
                                         </div>
                                     </div>
 
