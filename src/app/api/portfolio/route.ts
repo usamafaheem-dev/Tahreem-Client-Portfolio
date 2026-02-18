@@ -8,6 +8,10 @@ const DATABASE_NAME = 'portfolio_db';
 
 export async function GET() {
     try {
+        if (!process.env.MONGODB_URI) {
+            return NextResponse.json({ error: 'MONGODB_URI is not defined' }, { status: 500 });
+        }
+
         const client = await clientPromise;
         const db = client.db(DATABASE_NAME);
 
@@ -16,6 +20,7 @@ export async function GET() {
 
         // If no data in DB, seed it from the local portfolio.json
         if (!data) {
+            console.log("No data found in MongoDB, attempting to seed...");
             const dataPath = path.join(process.cwd(), 'src/data/portfolio.json');
             if (fs.existsSync(dataPath)) {
                 const fileContents = fs.readFileSync(dataPath, 'utf8');
@@ -26,14 +31,17 @@ export async function GET() {
                 data = await db.collection(COLLECTION_NAME).findOne({ _id: result.insertedId });
                 console.log("Database seeded from portfolio.json");
             } else {
-                return NextResponse.json({ error: 'Data not found in DB or local file' }, { status: 404 });
+                return NextResponse.json({ error: 'Initial data file not found' }, { status: 404 });
             }
         }
 
         return NextResponse.json(data);
-    } catch (error) {
+    } catch (error: any) {
         console.error("Error handling portfolio GET:", error);
-        return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
+        return NextResponse.json({
+            error: 'Failed to fetch data',
+            message: error.message || String(error)
+        }, { status: 500 });
     }
 }
 
