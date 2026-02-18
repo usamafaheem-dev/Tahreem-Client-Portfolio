@@ -1,20 +1,27 @@
 import { NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
 
-cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
     try {
-        if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
+        const cloud_name = process.env.CLOUDINARY_CLOUD_NAME;
+        const api_key = process.env.CLOUDINARY_API_KEY;
+        const api_secret = process.env.CLOUDINARY_API_SECRET;
+
+        if (!cloud_name || !api_key || !api_secret) {
+            const missing = [];
+            if (!cloud_name) missing.push('CLOUD_NAME');
+            if (!api_key) missing.push('API_KEY');
+            if (!api_secret) missing.push('API_SECRET');
+
             return NextResponse.json({
                 success: false,
-                message: 'Cloudinary credentials are not configured on the server.'
+                message: `Cloudinary credentials missing: ${missing.join(', ')}. Please redeploy on Vercel.`
             }, { status: 500 });
         }
+
+        cloudinary.config({ cloud_name, api_key, api_secret });
 
         const formData = await request.formData();
         const file = formData.get('file') as File;
