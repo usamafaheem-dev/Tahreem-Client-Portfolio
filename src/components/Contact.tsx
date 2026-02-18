@@ -12,6 +12,36 @@ import {
 } from 'react-icons/fa6';
 
 const Contact = () => {
+  const [formData, setFormData] = React.useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.type === 'email' || e.target.type === 'text' ? 'name' : e.target.type === 'email' ? 'email' : 'message']: e.target.value });
+    // Correcting the above logic to be simpler and generic
+    const { type, value } = e.target;
+    // We can't rely solely on type for name vs email vs message if names aren't set
+    // Let's set 'name' attributes on the inputs instead
+  };
+
+  const handleInputChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const { name, email, message } = formData;
+
+    // Construct WhatsApp Message
+    const whatsappNumber = "923477734372";
+    const text = `*Hi Tehreem, I need assistance with SQA / Testing* %0A%0A*Name:* ${name}%0A*Email:* ${email}%0A*Message:* ${message}`;
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
+
+    window.open(whatsappUrl, '_blank');
+  };
+
   return (
     <section id="contact" className="py-24 md:py-20 bg-[var(--background)] overflow-hidden relative">
       {/* Ambient Animated Background Elements */}
@@ -64,7 +94,7 @@ const Contact = () => {
                     {
                       icon: <FaEnvelope />,
                       title: "Email",
-                      val: "Tehreem@example.com",
+                      val: "tehreemarif308@gmail.com",
                       gradient: "from-violet-500 to-indigo-500"
                     },
                     {
@@ -106,12 +136,14 @@ const Contact = () => {
                 <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-6 md:mb-8">Follow My Journey</p>
                 <div className="flex gap-3 md:gap-4">
                   {[
-                    { icon: <FaLinkedin />, color: "hover:bg-[#0077b5]", href: "#" },
-                    { icon: <FaGithub />, color: "hover:bg-[#333]", href: "#" }
+                    { icon: <FaLinkedin />, color: "hover:bg-[#0077b5]", href: "https://www.linkedin.com/in/tehreemarif/" },
+                    { icon: <FaGithub />, color: "hover:bg-[#333]", href: "https://github.com/techtehr" }
                   ].map((social, i) => (
                     <a
                       key={i}
                       href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl md:rounded-[20px] bg-slate-900 dark:bg-white/10 text-white flex items-center justify-center ${social.color} transition-all duration-300 hover:-translate-y-2 shadow-lg shadow-slate-900/10`}
                     >
                       <span className="text-xl md:text-2xl">{social.icon}</span>
@@ -131,22 +163,28 @@ const Contact = () => {
             className="lg:col-span-7 h-full"
           >
             <div className="h-full bg-white dark:bg-white/[0.03] backdrop-blur-2xl p-8 md:p-12 rounded-[40px] md:rounded-[50px] border border-slate-200/50 dark:border-white/10 shadow-xl shadow-slate-200/40 dark:shadow-none">
-              <form className="space-y-6 md:space-y-8">
+              <form onSubmit={handleSubmit} className="space-y-6 md:space-y-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                   <div className="group">
                     <label className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-2 mb-2 md:mb-3 block group-focus-within:text-violet-500 transition-colors">Full Name</label>
                     <input
                       type="text"
+                      value={formData.name}
+                      onChange={(e) => handleInputChange('name', e.target.value)}
                       className="w-full px-6 md:px-8 py-4 md:py-5 rounded-2xl md:rounded-[24px] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 dark:text-white transition-all font-semibold placeholder:text-slate-300 dark:placeholder:text-slate-700 text-sm md:text-base"
                       placeholder="John Doe"
+                      required
                     />
                   </div>
                   <div className="group">
                     <label className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-2 mb-2 md:mb-3 block group-focus-within:text-violet-500 transition-colors">Email Address</label>
                     <input
                       type="email"
+                      value={formData.email}
+                      onChange={(e) => handleInputChange('email', e.target.value)}
                       className="w-full px-6 md:px-8 py-4 md:py-5 rounded-2xl md:rounded-[24px] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 dark:text-white transition-all font-semibold placeholder:text-slate-300 dark:placeholder:text-slate-700 text-sm md:text-base"
                       placeholder="john@example.com"
+                      required
                     />
                   </div>
                 </div>
@@ -155,8 +193,11 @@ const Contact = () => {
                   <label className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 ml-2 mb-2 md:mb-3 block group-focus-within:text-violet-500 transition-colors">Your Message</label>
                   <textarea
                     rows={5}
+                    value={formData.message}
+                    onChange={(e) => handleInputChange('message', e.target.value)}
                     className="w-full px-6 md:px-8 py-4 md:py-5 rounded-[30px] md:rounded-[40px] bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/5 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 dark:text-white transition-all font-semibold placeholder:text-slate-300 dark:placeholder:text-slate-700 text-sm md:text-base resize-none"
                     placeholder="Tell me about your project..."
+                    required
                   ></textarea>
                 </div>
 
@@ -166,7 +207,7 @@ const Contact = () => {
                   type="submit"
                   className="w-full py-5 md:py-6 rounded-2xl md:rounded-[24px] bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black uppercase tracking-widest text-[10px] md:text-xs shadow-xl shadow-slate-900/10 flex items-center justify-center gap-3 group transition-all"
                 >
-                  <span>Send Message</span>
+                  <span>Send Message via WhatsApp</span>
                   <FaPaperPlane className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </motion.button>
               </form>

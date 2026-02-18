@@ -35,13 +35,15 @@ export default function Footer() {
             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400 dark:text-slate-500">Connect Globally</p>
             <div className="flex gap-4">
               {[
-                { icon: <FaLinkedinIn />, href: "#", color: "hover:bg-[#0077b5]" },
-                { icon: <FaGithub />, href: "#", color: "hover:bg-[#333]" },
-                { icon: <FaEnvelope />, href: "mailto:Tehreem@example.com", color: "hover:bg-violet-600" }
+                { icon: <FaLinkedinIn />, href: "https://www.linkedin.com/in/tehreemarif/", color: "hover:bg-[#0077b5]" },
+                { icon: <FaGithub />, href: "https://github.com/techtehr", color: "hover:bg-[#333]" },
+                { icon: <FaEnvelope />, href: "mailto:tehreemarif308@gmail.com", color: "hover:bg-violet-600" }
               ].map((social, i) => (
                 <motion.a
                   key={i}
                   href={social.href}
+                  target={social.href.startsWith("http") ? "_blank" : undefined}
+                  rel={social.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   whileHover={{ y: -5 }}
                   className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/10 flex items-center justify-center text-slate-600 dark:text-slate-400 ${social.color} hover:text-white transition-all shadow-sm hover:shadow-xl`}
                 >
