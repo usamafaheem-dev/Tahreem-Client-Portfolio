@@ -5,8 +5,10 @@ import { useTheme } from "next-themes";
 import { motion, AnimatePresence } from "framer-motion";
 import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from "@heroicons/react/24/outline";
 import { FaLinkedinIn, FaGithub, FaEnvelope, FaChevronRight } from "react-icons/fa";
+import { usePortfolio } from "@/context/PortfolioContext";
 
 export default function Navbar() {
+  const { data } = usePortfolio();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
@@ -37,14 +39,27 @@ export default function Navbar() {
         ? "bg-white/70 dark:bg-slate-900/70 backdrop-blur-2xl border border-white/20 dark:border-white/5 py-2.5 rounded-2xl sm:rounded-none shadow-lg shadow-violet-500/5"
         : "bg-transparent py-5"
         }`}>
-        {/* Logo (Just Name) */}
+        {/* Dynamic Logo/Name */}
         <Link href="#" className="group relative">
           <div className="flex items-center">
-            <span className="text-lg sm:text-2xl font-black tracking-tighter font-outfit text-slate-900 dark:text-white flex items-center gap-1 group-hover:scale-105 transition-transform duration-300">
-              <span className="bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">Tehreem</span>
-              <span className="opacity-80">Arif</span>
-              <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-fuchsia-500 animate-pulse"></span>
-            </span>
+            {data?.navbar?.logoType === 'image' && data?.navbar?.logoImage ? (
+              <div className="relative h-8 sm:h-10 w-24 sm:w-32">
+                <Image
+                  src={data.navbar.logoImage}
+                  alt="Logo"
+                  fill
+                  className="object-contain"
+                />
+              </div>
+            ) : (
+              <span className="text-lg sm:text-2xl font-black tracking-tighter font-outfit text-slate-900 dark:text-white flex items-center gap-1 group-hover:scale-105 transition-transform duration-300">
+                <span className="bg-gradient-to-r from-violet-600 to-fuchsia-600 bg-clip-text text-transparent">
+                  {data?.navbar?.logoText?.split(' ')[0] || 'Tehreem'}
+                </span>
+                <span className="opacity-80">{data?.navbar?.logoText?.split(' ').slice(1).join(' ') || 'Arif'}</span>
+                <span className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-fuchsia-500 animate-pulse"></span>
+              </span>
+            )}
           </div>
           <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-violet-600 to-fuchsia-600 group-hover:w-full transition-all duration-300"></div>
         </Link>

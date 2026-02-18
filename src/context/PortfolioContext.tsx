@@ -70,6 +70,11 @@ export interface PortfolioData {
         fontColor: string;
         heroAnimation: string;
     };
+    navbar: {
+        logoType: 'text' | 'image';
+        logoText: string;
+        logoImage: string;
+    };
 }
 
 interface PortfolioContextType {

@@ -27,6 +27,9 @@ export async function GET() {
             if (fs.existsSync(dataPath)) {
                 const fileContents = fs.readFileSync(dataPath, 'utf8');
                 const localData = JSON.parse(fileContents);
+                if (!localData.navbar) {
+                    localData.navbar = { logoType: 'text', logoText: 'Tehreem Arif', logoImage: '' };
+                }
 
                 // Save to MongoDB
                 const result = await db.collection(COLLECTION_NAME).insertOne(localData);
