@@ -25,30 +25,24 @@ export async function POST(request: Request) {
 
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
+        const fileBase64 = `data:${file.type};base64,${buffer.toString('base64')}`;
 
-        return new Promise<NextResponse>((resolve) => {
-            cloudinary.uploader.upload_stream(
-                { resource_type: 'auto' },
-                (error, result) => {
-                    if (error) {
-                        console.error('Cloudinary upload error:', error);
-                        resolve(NextResponse.json({
-                            success: false,
-                            message: 'Cloudinary upload failed: ' + (error.message || 'Unknown error'),
-                            error: error
-                        }, { status: 500 }));
-                    } else {
-                        resolve(NextResponse.json({ success: true, url: result?.secure_url }));
-                    }
-                }
-            ).end(buffer);
+        // Standard upload is often more stable in serverless than stream
+        const uploadResponse = await cloudinary.uploader.upload(fileBase64, {
+            resource_type: 'auto',
+            folder: 'portfolio'
         });
 
-    } catch (error) {
+        return NextResponse.json({
+            success: true,
+            url: uploadResponse.secure_url
+        });
+
+    } catch (error: any) {
         console.error('Upload error:', error);
         return NextResponse.json({
             success: false,
-            message: 'Upload processing failed: ' + String(error)
+            message: 'Upload failed: ' + (error.message || String(error))
         }, { status: 500 });
     }
 }
