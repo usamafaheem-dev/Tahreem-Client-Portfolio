@@ -192,12 +192,20 @@ const AdminDashboard = () => {
                 const newData = JSON.parse(JSON.stringify(data));
                 const keys = path.split('.');
                 let current: any = newData;
-                for (let i = 0; i < keys.length - 1; i++) current = current[keys[i]];
+                for (let i = 0; i < keys.length - 1; i++) {
+                    if (!current[keys[i]]) current[keys[i]] = {};
+                    current = current[keys[i]];
+                }
                 current[keys[keys.length - 1]] = result.url;
                 setData(newData);
-                setToast({ message: 'File uploaded!', type: 'success' });
+                setToast({ message: 'File uploaded successfully!', type: 'success' });
+            } else {
+                setToast({ message: result.message || 'Upload failed.', type: 'error' });
             }
-        } catch { setToast({ message: 'Upload failed.', type: 'error' }); }
+        } catch (err) {
+            console.error(err);
+            setToast({ message: 'Upload failed. Check your connection or console.', type: 'error' });
+        }
         finally { setUploading(null); }
     };
 
