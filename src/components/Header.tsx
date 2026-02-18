@@ -31,6 +31,8 @@ export default function Navbar() {
     { name: "Contact", href: "#contact" },
   ];
 
+  if (!mounted) return null;
+
   return (
     <header className={`fixed w-full z-50 transition-all duration-500 px-4 sm:px-0 ${isScrolled
       ? "top-2 sm:top-0"
@@ -153,7 +155,14 @@ export default function Navbar() {
             <div className="flex justify-between items-center px-6 py-6 border-b border-slate-100 dark:border-white/5">
               <Link href="#" onClick={() => setMenuOpen(false)} className="flex items-center">
                 <span className="text-lg font-black tracking-tighter text-slate-900 dark:text-white">
-                  Tehreem<span className="opacity-50 font-medium">Arif</span>
+                  {data?.navbar?.logoType === 'image' && data?.navbar?.logoImage ? (
+                    "Portfolio"
+                  ) : (
+                    <>
+                      {data?.navbar?.logoText?.split(' ')[0] || 'Tehreem'}
+                      <span className="opacity-50 font-medium">{data?.navbar?.logoText?.split(' ').slice(1).join(' ') || 'Arif'}</span>
+                    </>
+                  )}
                 </span>
               </Link>
               <button
