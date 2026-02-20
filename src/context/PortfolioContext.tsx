@@ -105,7 +105,7 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
                     experience: json.experience || [],
                     projects: json.projects || [],
                     footer: json.footer || { brandName: '', brandLastName: '', tagline: '', copyright: '', designCredit: '' },
-                    settings: json.settings || { password: 'tahreem2025', primaryColor: '#7c3aed', accentColor: '#d946ef', fontColor: '#1e293b', heroAnimation: 'rotate' },
+                    settings: { password: 'tehreem2025', primaryColor: '#7c3aed', accentColor: '#d946ef', fontColor: '#1e293b', heroAnimation: 'rotate', ...(json.settings || {}) },
                     navbar: json.navbar || { logoType: 'text', logoText: 'Tehreem Arif', logoImage: '' }
                 };
 

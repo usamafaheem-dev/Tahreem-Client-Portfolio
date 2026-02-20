@@ -83,7 +83,15 @@ export async function POST(request: Request) {
             { upsert: true }
         );
 
-        return NextResponse.json({ message: 'Data saved successfully in MongoDB', data: dataToSave });
+        // Also update local file as a backup and to stay in sync
+        try {
+            const dataPath = path.join(process.cwd(), 'src/data/portfolio.json');
+            fs.writeFileSync(dataPath, JSON.stringify(dataToSave, null, 2));
+        } catch (e) {
+            console.error("Local file update failed:", e);
+        }
+
+        return NextResponse.json({ message: 'Data saved successfully in MongoDB and local backup', data: dataToSave });
     } catch (error) {
         console.error("Error saving to MongoDB:", error);
         return NextResponse.json({ error: 'Failed to save data' }, { status: 500 });

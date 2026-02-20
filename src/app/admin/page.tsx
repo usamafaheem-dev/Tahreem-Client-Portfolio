@@ -28,7 +28,7 @@ const LoginScreen = ({ onLogin, savedPassword }: { onLogin: () => void; savedPas
         try {
             const res = await fetch('/api/portfolio?t=' + Date.now());
             const data = await res.json();
-            const correctPassword = data?.settings?.password || 'tahreem2025';
+            const correctPassword = data?.settings?.password || 'tehreem2025';
 
             setTimeout(() => {
                 if (password === correctPassword) {
@@ -41,7 +41,7 @@ const LoginScreen = ({ onLogin, savedPassword }: { onLogin: () => void; savedPas
             }, 600);
         } catch {
             setTimeout(() => {
-                if (password === 'tahreem2025') {
+                if (password === 'tehreem2025') {
                     sessionStorage.setItem('admin_auth', 'true');
                     onLogin();
                 } else {
@@ -70,7 +70,7 @@ const LoginScreen = ({ onLogin, savedPassword }: { onLogin: () => void; savedPas
                         <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-violet-600 to-fuchsia-600 shadow-lg shadow-violet-500/30 mb-5">
                             <FaLock className="text-white text-2xl" />
                         </div>
-                        <h1 className="text-2xl font-black text-slate-800 tracking-tight">Admin Portal</h1>
+                        <h1 className="text-2xl font-black text-slate-800 tracking-tight">Tehreem Arif Admin</h1>
                         <p className="text-sm text-slate-400 mt-2 font-medium">Enter your password to continue</p>
                     </div>
 
@@ -106,7 +106,7 @@ const LoginScreen = ({ onLogin, savedPassword }: { onLogin: () => void; savedPas
                             {loading ? <FaSpinner className="animate-spin" /> : <><FaLock className="text-xs" /> Sign In</>}
                         </button>
                     </form>
-                    <p className="text-center text-[10px] text-slate-300 mt-6 font-bold uppercase tracking-widest">Secured Admin Gateway • Portfolio CMS</p>
+                    <p className="text-center text-[10px] text-slate-300 mt-6 font-bold uppercase tracking-widest">Secured Gateway • Tehreem Arif</p>
                 </div>
             </motion.div>
         </div>
@@ -174,7 +174,7 @@ const AdminDashboard = () => {
                 experience: json.experience || [],
                 projects: json.projects || [],
                 footer: json.footer || { brandName: '', brandLastName: '', tagline: '', copyright: '', designCredit: '' },
-                settings: json.settings || { password: 'tahreem2025', heroAnimation: 'rotate' },
+                settings: { password: 'tehreem2025', heroAnimation: 'rotate', ...(json.settings || {}) },
                 navbar: json.navbar || { logoType: 'text', logoText: 'Tehreem Arif', logoImage: '' }
             };
 
@@ -277,7 +277,7 @@ const AdminDashboard = () => {
                             <span className="text-white text-sm font-black">TA</span>
                         </div>
                         <div>
-                            <h2 className="text-sm font-black text-slate-800 tracking-tight">Portfolio CMS</h2>
+                            <h2 className="text-sm font-black text-slate-800 tracking-tight">Tehreem Arif</h2>
                             <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Admin Panel</p>
                         </div>
                     </div>
@@ -688,7 +688,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="px-8 py-6 text-center border-t border-slate-100">
-                    <p className="text-[10px] text-slate-300 font-bold uppercase tracking-widest">Portfolio CMS V3.0 • Full Customization • Vercel Blob Powered</p>
+                    <p className="text-[10px] text-slate-300 font-bold uppercase tracking-widest">Tehreem Arif Dashboard</p>
                 </div>
             </main>
         </div>
