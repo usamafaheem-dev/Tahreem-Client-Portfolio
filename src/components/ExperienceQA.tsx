@@ -2,35 +2,13 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaBriefcase, FaGraduationCap, FaCalendar, FaCircle } from 'react-icons/fa6';
+import { FaBriefcase, FaGraduationCap, FaCalendar } from 'react-icons/fa6';
+import { usePortfolio } from '@/context/PortfolioContext';
+import Image from 'next/image';
 
 const ExperienceQA = () => {
-    const experiences = [
-        {
-            title: "Manual SQA Engineer",
-            company: "VertexAi",
-            period: "May 2025 - Present",
-            description: "Specializing in manual software quality assurance, ensuring product excellence through meticulous test execution, bug reporting, and regression testing.",
-            type: "work",
-            gradient: "from-violet-600 to-indigo-600"
-        },
-        {
-            title: "QA Intern",
-            company: "VertexAi",
-            period: "Feb 2025 - Apr 2025",
-            description: "Gained hands-on experience in software testing life cycle (STLC), assisting in test case development, and performing initial rounds of testing.",
-            type: "work",
-            gradient: "from-fuchsia-600 to-pink-600"
-        },
-        {
-            title: "BS Software Engineering",
-            company: "GC University Faisalabad",
-            period: "2021 - 2025",
-            description: "Focused on software development principles, quality assurance methodologies, and software human lifecycle management.",
-            type: "education",
-            gradient: "from-blue-600 to-cyan-600"
-        }
-    ];
+    const { data } = usePortfolio();
+    const experienceData = data?.experience || [];
 
     return (
         <section id="experience" className="py-24 md:py-20 bg-[var(--background)] overflow-hidden relative">
@@ -68,9 +46,9 @@ const ExperienceQA = () => {
                         </div>
 
                         <div className="space-y-12 relative border-l-2 border-slate-200/50 dark:border-white/10 pl-8 ml-7">
-                            {experiences.filter(exp => exp.type === 'work').map((exp, index) => (
+                            {experienceData.filter(exp => exp.type === 'work').map((exp, index) => (
                                 <motion.div
-                                    key={index}
+                                    key={exp.id}
                                     initial={{ opacity: 0, x: -30 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -85,13 +63,15 @@ const ExperienceQA = () => {
                                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-violet-50 dark:bg-violet-900/40 text-violet-600 dark:text-violet-300 text-[10px] font-black uppercase tracking-widest border border-violet-100 dark:border-violet-500/20">
                                                 <FaCalendar size={10} />
-                                                {exp.period}
+                                                {exp.date}
                                             </div>
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">{exp.company}</span>
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">{exp.company}</span>
+                                            </div>
                                         </div>
 
                                         <h4 className="text-2xl font-black font-outfit text-slate-900 dark:text-white mb-4 tracking-tight group-hover:text-violet-600 transition-colors">
-                                            {exp.title}
+                                            {exp.role}
                                         </h4>
                                         <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed font-medium">
                                             {exp.description}
@@ -112,9 +92,9 @@ const ExperienceQA = () => {
                         </div>
 
                         <div className="space-y-12 relative border-l-2 border-slate-200/50 dark:border-white/10 pl-8 ml-7">
-                            {experiences.filter(exp => exp.type === 'education').map((exp, index) => (
+                            {experienceData.filter(exp => exp.type === 'education').map((exp, index) => (
                                 <motion.div
-                                    key={index}
+                                    key={exp.id}
                                     initial={{ opacity: 0, x: 30 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     transition={{ duration: 0.6, delay: index * 0.2 }}
@@ -129,13 +109,15 @@ const ExperienceQA = () => {
                                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-fuchsia-50 dark:bg-fuchsia-900/40 text-fuchsia-600 dark:text-fuchsia-300 text-[10px] font-black uppercase tracking-widest border border-fuchsia-100 dark:border-fuchsia-500/20">
                                                 <FaCalendar size={10} />
-                                                {exp.period}
+                                                {exp.date}
                                             </div>
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">{exp.company}</span>
+                                            <div className="flex items-center gap-3">
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">{exp.company}</span>
+                                            </div>
                                         </div>
 
                                         <h4 className="text-2xl font-black font-outfit text-slate-900 dark:text-white mb-4 tracking-tight group-hover:text-fuchsia-600 transition-colors">
-                                            {exp.title}
+                                            {exp.role}
                                         </h4>
                                         <p className="text-slate-600 dark:text-slate-400 text-sm md:text-base leading-relaxed font-medium">
                                             {exp.description}

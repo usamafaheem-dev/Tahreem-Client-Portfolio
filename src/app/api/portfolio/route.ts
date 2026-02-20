@@ -46,9 +46,22 @@ export async function GET() {
             }
         });
     } catch (error: any) {
-        console.error("Error handling portfolio GET:", error);
+        console.error("Database connection failed, falling back to local portfolio.json:", error.message);
+
+        // Fallback to local file if DB is down
+        try {
+            const dataPath = path.join(process.cwd(), 'src/data/portfolio.json');
+            if (fs.existsSync(dataPath)) {
+                const fileContents = fs.readFileSync(dataPath, 'utf8');
+                const localData = JSON.parse(fileContents);
+                return NextResponse.json(localData);
+            }
+        } catch (fallbackError) {
+            console.error("Fallback also failed:", fallbackError);
+        }
+
         return NextResponse.json({
-            error: 'Failed to fetch data',
+            error: 'Database error and fallback failed',
             message: error.message || String(error)
         }, { status: 500 });
     }

@@ -69,7 +69,7 @@ export default function Skills() {
 
 
   useEffect(() => {
-   
+
     import("@tsparticles/engine").then(({ tsParticles }) => {
       particlesInit(tsParticles as TspEngine);
     });

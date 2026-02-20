@@ -17,8 +17,8 @@
       "Test Architect",
       "Code Guardian"
     ],
-    "cvPdf": "/TehreemQ.pdf",
-    "heroImage": "https://res.cloudinary.com/dzpyykt7s/image/upload/v1771405007/k8fvfrxpmqzadcffog63.png",
+    "cvPdf": "https://etsrcmqibimufj0p.public.blob.vercel-storage.com/Tehreem-QA-Resume-22hv8bXEVxPWUHXjPymdBCfTM2GjC7.pdf",
+    "heroImage": "https://etsrcmqibimufj0p.public.blob.vercel-storage.com/bg%20copy-CqAXUpL6SFrQpTm0AjZdxZAXEoCcw7.png",
     "heroAnimation": "rotate",
     "stat1Value": "05+",
     "stat1Label": "Frameworks",
@@ -223,5 +223,10 @@
     "accentColor": "#d946ef",
     "fontColor": "#1e293b",
     "heroAnimation": "rotate"
+  },
+  "navbar": {
+    "logoType": "text",
+    "logoText": "Tehreem Arif",
+    "logoImage": "https://etsrcmqibimufj0p.public.blob.vercel-storage.com/robotic_qa_assistant_3d_1771351642753-removebg-preview-Kdd8bq91pV1KfNW2hOk3QC7CQbGOOI.png"
   }
 }

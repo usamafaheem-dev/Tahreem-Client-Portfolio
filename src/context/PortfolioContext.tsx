@@ -43,6 +43,7 @@ export interface PortfolioData {
         date: string;
         description: string;
         type: string;
+        image?: string;
     }[];
     projects: {
         id: number;
@@ -95,7 +96,20 @@ export const PortfolioProvider = ({ children }: { children: ReactNode }) => {
             const res = await fetch('/api/portfolio', { cache: 'no-store' });
             if (res.ok) {
                 const json = await res.json();
-                setData(json);
+
+                // Normalize data to ensure all sections exist for the frontend
+                const normalizedData: PortfolioData = {
+                    hero: json.hero || { firstName: '', lastName: '', title: '', qaWords: [], typewriterSentences: [], cvPdf: '', heroImage: '', heroAnimation: 'rotate', stat1Value: '', stat1Label: '', stat2Value: '', stat2Label: '' },
+                    about: json.about || { heading: '', subheading: '', description: '', aboutImage: '', stats: { accuracy: '', experienceYears: '' }, features: [] },
+                    contact: json.contact || { email: '', phone: '', whatsapp: '', location: '', linkedin: '', github: '' },
+                    experience: json.experience || [],
+                    projects: json.projects || [],
+                    footer: json.footer || { brandName: '', brandLastName: '', tagline: '', copyright: '', designCredit: '' },
+                    settings: json.settings || { password: 'tahreem2025', primaryColor: '#7c3aed', accentColor: '#d946ef', fontColor: '#1e293b', heroAnimation: 'rotate' },
+                    navbar: json.navbar || { logoType: 'text', logoText: 'Tehreem Arif', logoImage: '' }
+                };
+
+                setData(normalizedData);
             }
         } catch (error) {
             console.error('Failed to fetch portfolio data', error);

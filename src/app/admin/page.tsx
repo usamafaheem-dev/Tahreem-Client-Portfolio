@@ -165,7 +165,20 @@ const AdminDashboard = () => {
         try {
             const res = await fetch('/api/portfolio?t=' + Date.now());
             const json = await res.json();
-            setData(json);
+
+            // Normalize data to ensure all sections exist
+            const normalizedData: PortfolioData = {
+                hero: json.hero || { firstName: '', lastName: '', title: '', qaWords: [], typewriterSentences: [], cvPdf: '', heroImage: '', heroAnimation: 'rotate', stat1Value: '', stat1Label: '', stat2Value: '', stat2Label: '' },
+                about: json.about || { heading: '', subheading: '', description: '', aboutImage: '', stats: { accuracy: '', experienceYears: '' }, features: [] },
+                contact: json.contact || { email: '', phone: '', whatsapp: '', location: '', linkedin: '', github: '' },
+                experience: json.experience || [],
+                projects: json.projects || [],
+                footer: json.footer || { brandName: '', brandLastName: '', tagline: '', copyright: '', designCredit: '' },
+                settings: json.settings || { password: 'tahreem2025', heroAnimation: 'rotate' },
+                navbar: json.navbar || { logoType: 'text', logoText: 'Tehreem Arif', logoImage: '' }
+            };
+
+            setData(normalizedData);
         } catch (error) { console.error('Failed to fetch', error); }
         finally { setLoading(false); }
     };
@@ -300,7 +313,7 @@ const AdminDashboard = () => {
                                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
                             </button>
                             <div>
-                                <h1 className="text-lg md:text-xl font-black text-slate-800 capitalize">{activeTab} Section</h1>
+                                <h1 className="text-lg md:text-xl font-black text-slate-800 capitalize">{activeTab.replace('_', ' ')} Section</h1>
                                 <p className="text-xs text-slate-400 font-medium hidden sm:block">Manage your {activeTab} content</p>
                             </div>
                         </div>
@@ -647,47 +660,7 @@ const AdminDashboard = () => {
                                     </div>
                                 </Card>
 
-                                <Card title="Theme Colors" icon={<FaPalette className="text-violet-500" />}>
-                                    <p className="text-xs text-slate-400 mb-5">Customize the color scheme of your portfolio site.</p>
-                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-                                        <div>
-                                            <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Primary Color</label>
-                                            <div className="flex items-center gap-3">
-                                                <input type="color" value={data.settings?.primaryColor || '#7c3aed'} onChange={(e) => handleChange('settings.primaryColor', e.target.value)}
-                                                    className="w-12 h-12 rounded-xl border-2 border-slate-200 cursor-pointer" />
-                                                <input type="text" value={data.settings?.primaryColor || '#7c3aed'} onChange={(e) => handleChange('settings.primaryColor', e.target.value)}
-                                                    className="flex-1 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 font-mono focus:border-violet-500 outline-none" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Accent Color</label>
-                                            <div className="flex items-center gap-3">
-                                                <input type="color" value={data.settings?.accentColor || '#d946ef'} onChange={(e) => handleChange('settings.accentColor', e.target.value)}
-                                                    className="w-12 h-12 rounded-xl border-2 border-slate-200 cursor-pointer" />
-                                                <input type="text" value={data.settings?.accentColor || '#d946ef'} onChange={(e) => handleChange('settings.accentColor', e.target.value)}
-                                                    className="flex-1 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 font-mono focus:border-violet-500 outline-none" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Font Color</label>
-                                            <div className="flex items-center gap-3">
-                                                <input type="color" value={data.settings?.fontColor || '#1e293b'} onChange={(e) => handleChange('settings.fontColor', e.target.value)}
-                                                    className="w-12 h-12 rounded-xl border-2 border-slate-200 cursor-pointer" />
-                                                <input type="text" value={data.settings?.fontColor || '#1e293b'} onChange={(e) => handleChange('settings.fontColor', e.target.value)}
-                                                    className="flex-1 bg-slate-50 border-2 border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 font-mono focus:border-violet-500 outline-none" />
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                    {/* Color Preview */}
-                                    <div className="mt-6 p-5 rounded-2xl border border-slate-200 bg-slate-50">
-                                        <p className="text-xs font-bold text-slate-500 mb-3 uppercase tracking-wider">Preview</p>
-                                        <div className="flex items-center gap-4">
-                                            <div className="h-14 flex-1 rounded-xl" style={{ background: `linear-gradient(135deg, ${data.settings?.primaryColor || '#7c3aed'}, ${data.settings?.accentColor || '#d946ef'})` }} />
-                                            <span className="text-lg font-black" style={{ color: data.settings?.fontColor || '#1e293b' }}>Sample Text</span>
-                                        </div>
-                                    </div>
-                                </Card>
 
                                 <Card title="Hero Animation Style" icon={<FaMagic className="text-violet-500" />}>
                                     <p className="text-xs text-slate-400 mb-4">Choose the animation style for the hero section's icon ring.</p>
@@ -715,7 +688,7 @@ const AdminDashboard = () => {
                 </div>
 
                 <div className="px-8 py-6 text-center border-t border-slate-100">
-                    <p className="text-[10px] text-slate-300 font-bold uppercase tracking-widest">Portfolio CMS V3.0 • Full Customization • Cloudinary Powered</p>
+                    <p className="text-[10px] text-slate-300 font-bold uppercase tracking-widest">Portfolio CMS V3.0 • Full Customization • Vercel Blob Powered</p>
                 </div>
             </main>
         </div>
