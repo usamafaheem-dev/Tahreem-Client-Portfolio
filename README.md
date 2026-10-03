@@ -1,58 +1,74 @@
-# 🌐 Sadia Khan — Personal Portfolio Website
+# Tehreem Arif — QA Portfolio
 
-Welcome to my **Next.js-based portfolio** where I showcase my projects, skills, and achievements as a web developer. This website features a sleek design, responsive layout, dark/light mode, and modern UI components.
+This is a modern portfolio website for **Tehreem Arif (SQA Specialist)** built with Next.js.  
+It includes a public portfolio frontend and a password-protected admin panel to manage portfolio content.
 
-> 🔥 Built with 💖 by [Sadia Khan](#) — UI/UX Designer & Web Developer
+## Features
 
----
+- Modern, animated, responsive UI
+- Light/Dark mode support
+- Dynamic portfolio data via API
+- Admin dashboard at `/admin`
+- MongoDB-backed content storage
+- Local JSON fallback/backup (`src/data/portfolio.json`)
+- File uploads via Vercel Blob
 
-## ✨ Features
+## Tech Stack
 
-- 🌗 Dark & Light Mode Toggle
-- 📱 Fully Responsive Design
-- 🎨 Beautiful Animated UI
-- 🔄 Smooth Page Transitions
-- 📁 Project Showcases
-- 📧 Contact Form (with email functionality)
-- 🧠 Skills with Hover Effects
-- 🌍 Deployed on Vercel (or Netlify/GitHub Pages)
+- **Framework:** Next.js 14 + React 18 + TypeScript
+- **Styling:** Tailwind CSS
+- **Animation:** Framer Motion
+- **Database:** MongoDB
+- **Storage:** Vercel Blob
 
----
+## Project Structure
 
-## 🚀 Tech Stack
+```text
+src/
+  app/
+    page.tsx              # Main portfolio page
+    admin/page.tsx        # Admin dashboard
+    api/portfolio/route.ts# Portfolio read/write API
+    api/upload/route.ts   # File upload API
+  components/             # UI sections (Hero, About, Skills, Projects, etc.)
+  context/                # Portfolio context provider
+  data/portfolio.json     # Default/fallback portfolio data
+  lib/mongodb.ts          # MongoDB connection
+```
 
-| Frontend | Styling | Icons & Fonts | Deployment |
-|----------|---------|----------------|------------|
-| ✅ Next.js | 🎨 Tailwind CSS | 🌟 Heroicons, Google Fonts | ▲ Vercel |
+## Getting Started
 
----
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Create `.env.local` in project root:
+   ```env
+   MONGODB_URI=your_mongodb_connection_string
+   BLOB_READ_WRITE_TOKEN=your_vercel_blob_token
+   ```
+3. Run development server:
+   ```bash
+   npm run dev
+   ```
+4. Open:
+   - Portfolio: `http://localhost:3000`
+   - Admin panel: `http://localhost:3000/admin`
 
-## 📸 Screenshots
+## Available Scripts
 
-> _Add some project screenshots or screen recordings here to give visitors a quick preview._
+- `npm run dev` — start local dev server
+- `npm run build` — production build
+- `npm run start` — run production server
+- `npm run lint` — run lint checks
 
----
+## Admin Notes
 
-## 📂 Folder Structure
+- Admin login password comes from `settings.password` in portfolio data.
+- Default fallback password in code/data is currently: `tehreem2025`.
+- You should change it for production use.
 
+## Deployment
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Recommended: **Vercel**  
+Make sure `MONGODB_URI` and `BLOB_READ_WRITE_TOKEN` are set in environment variables.
